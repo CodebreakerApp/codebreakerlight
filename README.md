@@ -6,6 +6,11 @@ In einem Tag eine komplette .NET Lösung entwickeln? Ziel dieses Workshop ist, d
 
 ## What's needed
 
+* Visual Studio 2022
+* GitHub Account
+* Docker Desktop
+* Microsoft Azure Subscription
+
 Visual Studio 2022 with these workloads:
 
 * ASP.NET and web development
@@ -14,5 +19,7 @@ Visual Studio 2022 with these workloads:
 [Download Visual Studio](https://visualstudio.microsoft.com/downloads/)
 
 A GitHub Account: [Signup for GitHub](https://github.com/signup)
+
+[Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
 Microsoft Azure Subscription - you can get USD 200,- credit for 30 days: [Azure Free Account](https://azure.microsoft.com/free/)
