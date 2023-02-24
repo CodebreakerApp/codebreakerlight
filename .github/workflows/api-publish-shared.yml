@@ -1,0 +1,56 @@
+name: shared workflow to publish an API with dotnet publish
+
+on:
+  workflow_call:
+    inputs:
+      containerimage-name:
+        required: true
+        type: string
+      app-name:
+        required: true
+        type: string
+      registryname:
+        required: true
+        type: string     
+      registryserver:
+        required: true
+        type: string    
+      resource-group:
+        required: true
+        type: string
+    secrets:
+      AZURE_CREDENTIALS:
+        required: true
+      REGISTRY_USERNAME:
+        required: true
+      REGISTRY_PASSWORD:
+        required: true  
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy to containerapp
+        uses: azure/CLI@v1
+        with:
+          inlinescript: |
+            echo "installing containerapp extension"
+            az config set extension.use_dynamic_install=yes_without_prompt
+            echo "Starting deploying."
+            az containerapp registry set -n ${{ inputs.app-name }} -g ${{ inputs.resource-group }} --server ${{ inputs.registryname }} --username ${{ secrets.REGISTRY_USERNAME }} --password ${{ secrets.REGISTRY_PASSWORD }}
+            az containerapp update -n ${{ inputs.app-name }} -g ${{ inputs.resource-group }} --image ${{ inputs.registryserver }}/${{ inputs.containerimage-name }}:latest
+
+      # ContainerApp authenticates using a managed identity
+      # - name: Deploy Container App
+      #   uses: azure/container-apps-deploy-action@v0
+      #   with:
+      #    acrName: ${{ inputs.registry }}
+      #    containerAppName: ${{ inputs.app-name }}
+      #    resourceGroup: ${{ inputs.resource-group }}
+      #    imageToDeploy: ${{ inputs.registry }}/${{ inputs.containerimage-name }}:${{ github.sha }}

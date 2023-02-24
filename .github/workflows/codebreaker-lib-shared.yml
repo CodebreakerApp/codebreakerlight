@@ -1,0 +1,32 @@
+name: codebreaker.shared nuget
+
+# When this action will be executed
+on:
+  # Automatically trigger it when detected changes in repo
+  push:
+    branches: 
+      [ main ]
+    paths:
+    - 'src/shared/CodeBreaker.Shared/**'
+    - '.github/workflows/codebreaker-lib-shared.yml'
+    - '.github/workflows/createnuget.yml'
+    - '.github/workflows/publishnuget.yml'
+
+  # Allow mannually trigger 
+  workflow_dispatch:    
+
+jobs:
+  build:
+    uses: cninnovation/codebreakermini/.github/workflows/createnuget.yml@main
+    with:
+      version-suffix: preview.1.${{ github.run_number }}
+      projectfile-path: src/shared/CodeBreaker.Shared/CodeBreaker.Shared.csproj
+      dotnet-version: '7.0.x'
+      artifact-name: codebreaker-shared
+
+  publish:
+    uses: cninnovation/codebreakermini/.github/workflows/publishnuget.yml@main
+    needs: build
+    with:
+      artifact-name: codebreaker-shared
+    secrets: inherit

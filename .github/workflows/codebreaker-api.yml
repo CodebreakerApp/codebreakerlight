@@ -1,0 +1,41 @@
+name: CodeBreaker API Container App
+
+on:
+  push:
+    branches: 
+      [ main ]
+    paths:
+    - 'src/services/api/CodeBreaker.APIs/**'
+    - '.github/workflows/codebreaker-api.yml'
+    - '.github/workflows/api-build-shared.yml'
+    - '.github/workflows/api-publish-shared.yml'
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    uses: cninnovation/codebreakermini/.github/workflows/api-build-shared.yml@main
+    with:
+      version-prefix: 1.0.0
+      version-suffix: ${{ github.run_number }}
+      containerimage-name: 'codebreakerapi'
+      solution-path: 'src/CodeBreaker.APIs.sln'
+      registry: 'codebreakercontainerregistry563722.azurecr.io'
+    secrets:
+      REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
+      REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
+  
+  deploy:
+    uses: cninnovation/codebreakermini/.github/workflows/api-publish-shared.yml@main
+    needs: build
+    with:
+      containerimage-name: 'codebreakerapi'
+      app-name: 'codebreaker-api'
+      registryname: 'codebreakercontainerregistry563722'
+      registryserver: 'codebreakercontainerregistry563722.azurecr.io'
+      resource-group: 'bastaspring2023'
+    secrets:
+      REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
+      REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}    
+      AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+    

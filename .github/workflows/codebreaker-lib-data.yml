@@ -1,0 +1,32 @@
+name: codebreaker.data nuget
+
+# When this action will be executed
+on:
+  # Automatically trigger it when detected changes in repo
+  push:
+    branches: 
+      [ main ]
+    paths:
+    - 'src/services/shared/CodeBreaker.Data/**'
+    - '.github/workflows/codebreaker-lib-data.yml'
+    - '.github/workflows/createnuget.yml'
+    - '.github/workflows/publishnuget.yml'
+
+  # Allow mannually trigger 
+  workflow_dispatch:    
+
+jobs:
+  build:
+    uses: cninnovation/codebreakermini/.github/workflows/createnuget.yml@main
+    with:
+      version-suffix: preview.1.${{ github.run_number }}
+      projectfile-path: src/services/shared/CodeBreaker.Data/CodeBreaker.Data.csproj
+      dotnet-version: '7.0.x'
+      artifact-name: codebreaker-data
+
+  publish:
+    uses: cninnovation/codebreakermini/.github/workflows/publishnuget.yml@main
+    needs: build
+    with:
+      artifact-name: codebreaker-data
+    secrets: inherit

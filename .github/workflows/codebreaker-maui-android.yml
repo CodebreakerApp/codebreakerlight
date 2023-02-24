@@ -1,0 +1,69 @@
+name: Android Deployment
+
+# When this action will be executed
+on:
+  # Automatically trigger it when detected changes in repo
+  push:
+    branches: 
+      [ main ]
+    paths:
+    - 'src/clients/xaml/CodeBreaker.MAUI/**'
+    - '.github/workflows/codebreaker-maui-android.yml'
+
+  # Allow mannually trigger 
+  workflow_dispatch:      
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout to the branch
+        uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '7.0.x'
+
+      - name: Install MAUI workload
+        run: dotnet workload install maui
+
+      - name: Build Android App
+        run: dotnet build src/clients/xaml/CodeBreaker.MAUI/CodeBreaker.MAUI.csproj --configuration Release -f net7.0-android -p:AndroidSigningKeyPass=${{ secrets.ANDROIDSIGNINGKEYPASS }} -p:AndroidSigningStorePass=${{ secrets.ANDROIDSIGNINGKEYPASS }}
+
+      - name: Create publish package
+        run: dotnet publish src/clients/xaml/CodeBreaker.MAUI/CodeBreaker.MAUI.csproj --configuration Release -f net7.0-android -p:AndroidSigningKeyPass=${{ secrets.ANDROIDSIGNINGKEYPASS }} -p:AndroidSigningStorePass=${{ secrets.ANDROIDSIGNINGKEYPASS }}
+    
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: codebreaker-android-ci-build
+          path: src/clients/xaml/CodeBreaker.MAUI/bin/release/net7.0-android/publish/com.codebreaker.android-Signed.apk
+          retention-days: 1
+
+  publish:
+    runs-on: windows-latest
+    needs: build
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: codebreaker-android-ci-build
+          path: publish
+
+      - name: Show download files
+        run: dir
+        working-directory: publish
+
+      - name: install appcenter CLI
+        run: npm install --location=global appcenter-cli
+        
+      - name: login appcenter
+        run: appcenter login --token ${{ secrets.APPCENTERCODEBREAKERANDROIDTOKEN }}
+        
+      - name: appcenter distribute
+        env:
+          BUILD_NUMBER: ${{ github.run_number }}
+        run: appcenter distribute release --app christiannagel/Codebreaker --group Canaries --build-version ${BUILD_NUMBER} --file publish/com.codebreaker.android-Signed.apk 
+        

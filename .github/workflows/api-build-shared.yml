@@ -1,0 +1,71 @@
+name: shared workflow to build an API with dotnet publish
+
+on:
+  workflow_call:
+    inputs:
+      version-prefix:
+        required: true
+        type: string
+      version-suffix:
+        required: true
+        type: string
+      containerimage-name:
+        required: true
+        type: string
+      solution-path:
+        required: true
+        type: string
+      registry:
+        required: true
+        type: string
+    secrets:
+      REGISTRY_USERNAME:
+        required: true
+      REGISTRY_PASSWORD:
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      IMAGE_VERSION: ${{ inputs.version-prefix }}-${{ inputs.version-suffix }}
+
+    steps:
+      - name: Checkout to the branch
+        uses: actions/checkout@v3
+
+      - name: Run unit tests
+        run: dotnet test ${{ inputs.solution-path }}
+
+      - name: Create Docker image
+        run: dotnet publish ${{ inputs.solution-path }} --os linux --arch x64 --version-suffix ${{ inputs.version-suffix }} --configuration Release -p:PublishProfile=DefaultContainer -p:ContainerImageName=${{ inputs.containerimage-name }} 
+
+      # Use Docker cli for push
+      - name: Docker login
+        uses: actions-hub/docker/login@master
+        env:
+            DOCKER_REGISTRY_URL: ${{ inputs.registry }}
+            DOCKER_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
+            DOCKER_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - name: Tag image with Azure Container Registry url and version
+        uses: actions-hub/docker/cli@master
+        with:
+            args: tag ${{ inputs.containerimage-name }}:${{ env.IMAGE_VERSION }} ${{ inputs.registry }}/${{ inputs.containerimage-name }}:${{ env.IMAGE_VERSION }}
+  
+      - name: Tag image with Azure Container Registry url and latest
+        uses: actions-hub/docker/cli@master
+        with:
+            args: tag ${{ inputs.containerimage-name }}:${{ env.IMAGE_VERSION }} ${{ inputs.registry }}/${{ inputs.containerimage-name }}:latest
+  
+      - name: Push versioned container image to ACR
+        uses: actions-hub/docker/cli@master
+        with:
+            args: push ${{ inputs.registry }}/${{ inputs.containerimage-name }}:${{ env.IMAGE_VERSION }}
+
+      - name: Push latest container image to ACR
+        uses: actions-hub/docker/cli@master
+        with:
+            args: push ${{ inputs.registry }}/${{ inputs.containerimage-name }}:latest
+       

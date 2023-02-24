@@ -1,0 +1,57 @@
+name: iOS Deployment
+
+# When this action will be executed
+on:
+  # Automatically trigger it when detected changes in repo
+  push:
+    branches: 
+      [ main ]
+    paths:
+    - 'src/clients/xaml/CodeBreaker.MAUI/**'
+    - '.github/workflows/codebreaker-maui-ios.yml'
+
+  # Allow mannually trigger 
+  workflow_dispatch:      
+
+jobs:
+  build:
+    runs-on: macos-12
+
+    steps:
+      - name: Checkout to the branch
+        uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '6.0.x'
+
+      - name: Install MAUI workload
+        run: dotnet workload install maui --ignore-failed-sources
+
+      - name: Restore Packages
+        run: dotnet restore src/clients/xaml/CodeBreaker.MAUI/CodeBreaker.MAUI.csproj
+
+      - name: Build MAUI iOS
+        run: dotnet build src/clients/xaml/CodeBreaker.MAUI/CodeBreaker.MAUI.csproj --configuration Release -f net6.0-ios --no-restore /p:buildForSimulator=True /p:packageApp=True /p:ArchiveOnBuild=False
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: codebreaker-ios-ci-build
+          path: src/clients/xaml/CodeBreaker.MAUI/bin/release/net6.0-ios/**/*.app
+
+      - name: Create publish package
+        run: dotnet publish src/clients/xaml/CodeBreaker.MAUI/CodeBreaker.MAUI.csproj -c Release -f net6.0-ios -r ios-arm64
+    
+      # Let's move this to a separate pipeline, but we'll change the previous result to dotnet publish before that.
+      - name: install appcenter CLI
+        run: npm install --location=global appcenter-cli
+        
+      - name: login appcenter
+        run: appcenter login --token ${{ secrets.APPCENTERCODEBREAKERANDROIDTOKEN }}
+        
+      - name: appcenter distribute
+        env:
+          BUILD_NUMBER: ${{ github.run_number }}
+        run: appcenter distribute release --app christiannagel/Codebreaker --group Canaries --build-version ${BUILD_NUMBER} --file src/clients/xaml/CodeBreaker.MAUI/bin/Release/net6.0-ios/**/*.app 
+        

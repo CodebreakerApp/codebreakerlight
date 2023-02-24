@@ -1,0 +1,32 @@
+name: codebreaker.viewmodels nuget
+
+# When this action will be executed
+on:
+  # Automatically trigger it when detected changes in repo
+  push:
+    branches: 
+      [ main ]
+    paths:
+    - 'src/clients/xaml/CodeBreaker.ViewModels/**'
+    - '.github/workflows/codebreaker-lib-viewmodels.yml'
+    - '.github/workflows/createnuget.yml'
+    - '.github/workflows/publishnuget.yml'
+
+  # Allow mannually trigger 
+  workflow_dispatch:    
+
+jobs:
+  build:
+    uses: cninnovation/codebreakermini/.github/workflows/createnuget.yml@main
+    with:
+      version-suffix: preview.1.${{ github.run_number }}
+      projectfile-path: src/clients/xaml/CodeBreaker.ViewModels/CodeBreaker.ViewModels.csproj
+      dotnet-version: '7.0.x'
+      artifact-name: codebreaker-viewmodels
+
+  publish:
+    uses: cninnovation/codebreakermini/.github/workflows/publishnuget.yml@main
+    needs: build
+    with:
+      artifact-name: codebreaker-viewmodels
+    secrets: inherit

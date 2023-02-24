@@ -1,0 +1,35 @@
+name: shared workflow to publish nuget package
+
+# When this action will be executed
+on:
+  workflow_call:
+    inputs:
+      artifact-name:
+        required: true
+        type: string
+    secrets:
+      DEVOPSARTIFACT_PAT:
+        required: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ inputs.artifact-name }}
+          path: packages
+    
+      - name: Add the Azure DevOps Artifacts Package Source
+        env:
+          ARTIFACTS_URL: "https://pkgs.dev.azure.com/cnilearn/codebreakerpackages/_packaging/codebreaker/nuget/v3/index.json"
+        run: dotnet nuget add source --username USERNAME --password ${{ secrets.DEVOPSARTIFACT_PAT }} --store-password-in-clear-text --name devopscninnovation ${{ env.ARTIFACTS_URL }}
+          
+      - name: Publish to Azure DevOps Artifacts
+        run: dotnet nuget push "packages/*.nupkg" --api-key ${{ secrets.DEVOPSARTIFACT_PAT }} --source devopscninnovation
+                
+      - name: Publish Symbols package to Azure DevOps Artifacts
+        run: dotnet nuget push "packages/*.snupkg" --api-key ${{ secrets.DEVOPSARTIFACT_PAT }} --source devopscninnovation  
+  
