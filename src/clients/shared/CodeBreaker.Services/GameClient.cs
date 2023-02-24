@@ -8,7 +8,6 @@ namespace CodeBreaker.Services;
 public class GameClient : IGameClient, IGameReportClient
 {
     private readonly HttpClient _httpClient;
-
     private readonly ILogger _logger;
 
     public GameClient(HttpClient httpClient, ILogger<GameClient> logger)
