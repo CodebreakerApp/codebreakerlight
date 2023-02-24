@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33417.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeBreaker.Data", "src\services\shared\CodeBreaker.Data\CodeBreaker.Data.csproj", "{08605ADF-8EA0-4875-BF60-31954A88F195}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeBreaker.Data", "services\shared\CodeBreaker.Data\CodeBreaker.Data.csproj", "{08605ADF-8EA0-4875-BF60-31954A88F195}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeBreaker.Shared", "src\shared\CodeBreaker.Shared\CodeBreaker.Shared.csproj", "{F727F821-F441-44A8-BF70-2EE235EB8D66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeBreaker.Shared", "shared\CodeBreaker.Shared\CodeBreaker.Shared.csproj", "{F727F821-F441-44A8-BF70-2EE235EB8D66}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeBreaker.Data.Demo", "CodeBreaker.Data.Demo\CodeBreaker.Data.Demo.csproj", "{A85FA6FD-A82D-4E0F-A625-D0669C51737E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeBreaker.APIs", "src\services\api\CodeBreaker.APIs\CodeBreaker.APIs.csproj", "{CAC00B0D-2D80-4E64-AFF1-737C8FB71292}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeBreaker.APIs", "services\api\CodeBreaker.APIs\CodeBreaker.APIs.csproj", "{CAC00B0D-2D80-4E64-AFF1-737C8FB71292}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

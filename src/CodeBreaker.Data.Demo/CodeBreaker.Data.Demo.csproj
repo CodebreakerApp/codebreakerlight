@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\services\shared\CodeBreaker.Data\CodeBreaker.Data.csproj" />
+    <ProjectReference Include="..\services\shared\CodeBreaker.Data\CodeBreaker.Data.csproj" />
   </ItemGroup>
 
 </Project>
