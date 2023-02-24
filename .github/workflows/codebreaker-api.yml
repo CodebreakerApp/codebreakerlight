@@ -14,7 +14,7 @@ on:
 
 jobs:
   build:
-    uses: cninnovation/codebreakermini/.github/workflows/api-build-shared.yml@main
+    uses: CNILearn/codebreakermini/.github/workflows/api-build-shared.yml@main
     with:
       version-prefix: 1.0.0
       version-suffix: ${{ github.run_number }}
@@ -26,7 +26,7 @@ jobs:
       REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
   
   deploy:
-    uses: cninnovation/codebreakermini/.github/workflows/api-publish-shared.yml@main
+    uses: CNILearn/codebreakermini/.github/workflows/api-publish-shared.yml@main
     needs: build
     with:
       containerimage-name: 'codebreakerapi'
