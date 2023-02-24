@@ -9,7 +9,7 @@ public class CodeBreakerContext : DbContext, ICodeBreakerRepository
 {
     private readonly ILogger _logger;
 
-    public CodeBreakerContext(DbContextOptions<CodeBreakerContext> options, ILogger logger) : base(options)
+    public CodeBreakerContext(DbContextOptions<CodeBreakerContext> options, ILogger<CodeBreakerContext> logger) : base(options)
     {
         _logger = logger;
     }

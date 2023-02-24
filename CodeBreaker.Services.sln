@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeBreaker.Shared", "src\s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeBreaker.Data.Demo", "CodeBreaker.Data.Demo\CodeBreaker.Data.Demo.csproj", "{A85FA6FD-A82D-4E0F-A625-D0669C51737E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeBreaker.APIs", "src\services\api\CodeBreaker.APIs\CodeBreaker.APIs.csproj", "{CAC00B0D-2D80-4E64-AFF1-737C8FB71292}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A85FA6FD-A82D-4E0F-A625-D0669C51737E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A85FA6FD-A82D-4E0F-A625-D0669C51737E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A85FA6FD-A82D-4E0F-A625-D0669C51737E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAC00B0D-2D80-4E64-AFF1-737C8FB71292}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAC00B0D-2D80-4E64-AFF1-737C8FB71292}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAC00B0D-2D80-4E64-AFF1-737C8FB71292}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAC00B0D-2D80-4E64-AFF1-737C8FB71292}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

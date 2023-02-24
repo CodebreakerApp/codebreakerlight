@@ -11,4 +11,7 @@ public class Move {
         $"{MoveNumber}, {string.Join("..", GuessPegs)}";
 }
 
-public record struct KeyPegs(int Black, int White);
+public record struct KeyPegs(int Black, int White)
+{
+    public int Total => Black + White;
+}

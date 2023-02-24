@@ -1,0 +1,15 @@
+<Project>
+  <PropertyGroup>
+    <Product>Codebreaker</Product>
+    <Authors>CN innovation</Authors>
+    <Company>CN innovation</Company>
+    <RepositoryUrl>https://github.com/CNILearn/codebreakermini</RepositoryUrl>
+    <Copyright>(c) CN innovation</Copyright>
+    <IncludeSymbols>True</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <VersionPrefix>1.0.0</VersionPrefix>
+  </PropertyGroup>
+</Project>

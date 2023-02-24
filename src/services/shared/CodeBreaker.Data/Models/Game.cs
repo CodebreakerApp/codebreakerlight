@@ -11,7 +11,7 @@ public class Game {
 
     public required DateTime Start { get; init; }
 
-    public DateTime? End { get; init; }
+    public DateTime? End { get; set; }
 
     public int Holes => Code.Count;
 
