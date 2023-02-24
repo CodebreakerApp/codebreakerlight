@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Configurations>Debug;Release;Mudblazor;FastUI</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Basta2023.Codebreaker.ClientServices</PackageId>
+    <VersionPrefix>1.0.0</VersionPrefix>
+    <Authors>CN innovation</Authors>
+    <Company>CN innovation</Company>
+    <PackageDescription>
+      Codebreaker client library to access the Game API and the Live Services API with GameClient and LiveClient
+    </PackageDescription>
+    <RepositoryUrl>https://github.com/CNinnovation/codebreakerpackages</RepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Exceptions\**" />
+    <EmbeddedResource Remove="Exceptions\**" />
+    <None Remove="Exceptions\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Basta2023.Codebreaker.Shared" Version="1.0.0-preview.1.8" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.50.0" />
+    <PackageReference Include="Microsoft.Identity.Client.Extensions.Msal" Version="2.26.0" />
+  </ItemGroup>
+
+
+</Project>
