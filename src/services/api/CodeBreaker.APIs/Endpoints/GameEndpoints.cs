@@ -4,7 +4,6 @@ using CodeBreaker.Data.Models;
 using CodeBreaker.Shared.Api;
 using CodeBreaker.Shared.Exceptions;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
 
 namespace CodeBreaker.APIs.Endpoints;
 
@@ -23,7 +22,7 @@ internal static class GameEndpoints
                 .GetByDateAsync(date)
                 .Select(x => x.ToDto());
 
-            return TypedResults.Ok(games);
+            return TypedResults.Ok(new GetGamesResponse(games.ToEnumerable())); // For production we should pass the IAsyncEnumerable instead of converting it to IEnumerable
         })
         .WithName("GetGames")
         .WithSummary("Get games by given date")

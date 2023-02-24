@@ -1,7 +1,6 @@
 ﻿using CodeBreaker.Data;
 using CodeBreaker.Data.Models;
 using static CodeBreaker.Shared.Colors;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CodeBreaker.APIs.Services;
 

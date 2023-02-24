@@ -1,8 +1,10 @@
 using Azure.Identity;
 using CodeBreaker.APIs.Endpoints;
 using CodeBreaker.APIs.Services;
+using CodeBreaker.APIs.Utilities;
 using CodeBreaker.Data;
 using CodeBreaker.Shared.Extensions;
+using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 
@@ -29,6 +31,7 @@ builder.Services.AddApplicationInsightsTelemetry(options =>
 {
     options.ConnectionString = builder.Configuration.GetRequired("ApiService:ApplicationInsights:ConnectionString");
 });
+builder.Services.AddSingleton<ITelemetryInitializer, ApplicationInsightsTelemetryInitializer>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
