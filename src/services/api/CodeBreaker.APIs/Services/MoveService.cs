@@ -20,6 +20,7 @@ public class MoveService : IMoveService {
         game.ApplyMove(move);
         await _repository.UpdateGameAsync(game);
         _logger.LogInformation("Set move");
+        _logger.SetMove(move.ToString(), move.KeyPegs?.ToString() ?? string.Empty);
         return game;
     }
 }

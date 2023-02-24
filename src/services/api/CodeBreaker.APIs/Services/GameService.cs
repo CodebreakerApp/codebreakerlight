@@ -20,7 +20,7 @@ public class GameService : IGameService
     {
         Game game = CreateWithRandomCode(username);
         await _repository.CreateGameAsync(game);
-        _logger.LogInformation("Game started");
+        _logger.GameStarted(game.ToString());
         return game;
     }
 
