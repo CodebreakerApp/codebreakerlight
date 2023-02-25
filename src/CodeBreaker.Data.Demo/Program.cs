@@ -22,7 +22,7 @@ Game game = new() {
     Code = new string[] { Red, Blue, Black, White },
     Username = "Sebastian",
     Start = DateTime.Now,
-    Colors = new string[] { },
+    Colors = Array.Empty<string>(),
     MaxMoves = 12,
 };
 
