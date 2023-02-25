@@ -15,11 +15,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="BastaSpring2023.Codebreaker.Shared" Version="1.0.0-preview.1.6" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Cosmos" Version="7.0.3" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\..\..\shared\CodeBreaker.Shared\CodeBreaker.Shared.csproj" />
-	</ItemGroup>
 
 </Project>

@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{7CB1707A-175D-4008-AC8E-35E933CB884F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{B7CEE53A-0CF8-4C04-B324-CBDE279C8146}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeBreaker.Data", "services\shared\CodeBreaker.Data\CodeBreaker.Data.csproj", "{2ACFA831-4BCB-4B50-B238-CEA8189814D9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2ACFA831-4BCB-4B50-B238-CEA8189814D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2ACFA831-4BCB-4B50-B238-CEA8189814D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2ACFA831-4BCB-4B50-B238-CEA8189814D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2ACFA831-4BCB-4B50-B238-CEA8189814D9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B7CEE53A-0CF8-4C04-B324-CBDE279C8146} = {7CB1707A-175D-4008-AC8E-35E933CB884F}
+		{2ACFA831-4BCB-4B50-B238-CEA8189814D9} = {B7CEE53A-0CF8-4C04-B324-CBDE279C8146}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {62CDC552-7ED6-4911-8544-DFD6DCB283EA}
+	EndGlobalSection
+EndGlobal
