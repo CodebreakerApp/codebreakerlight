@@ -3,6 +3,8 @@ using CodeBreaker.APIs.Services;
 using CodeBreaker.Data.Models;
 using CodeBreaker.Shared.Api;
 using CodeBreaker.Shared.Exceptions;
+
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CodeBreaker.APIs.Endpoints;
@@ -33,7 +35,7 @@ internal static class GameEndpoints
         });
 
         // Get game by id
-        group.MapGet("/{gameId:guid}", async Task<IResult> (
+        group.MapGet("/{gameId:guid}", async Task<Results<Ok<GetGameResponse>, NotFound>> (
             [FromRoute] Guid gameId,
             [FromServices] IGameService gameService
         ) =>
@@ -70,7 +72,7 @@ internal static class GameEndpoints
         });
 
         // Create move for game
-        group.MapPost("/{gameId:guid}/moves", async Task<IResult> (
+        group.MapPost("/{gameId:guid}/moves", async Task<Results<Ok<CreateMoveResponse>, NotFound, BadRequest<string>>>(
             [FromRoute] Guid gameId,
             [FromBody] CreateMoveRequest req,
             [FromServices] IMoveService moveService) =>
