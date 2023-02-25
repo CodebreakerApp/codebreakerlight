@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CodeBreaker.MAUI.Views.Components"
+             xmlns:vm="clr-namespace:CodeBreaker.ViewModels;assembly=CodeBreaker.ViewModels"
+             xmlns:pages="clr-namespace:CodeBreaker.MAUI.Views.Pages"
+             x:Class="CodeBreaker.MAUI.Views.Components.PegSelectionView"
+             x:Name="PegSelectionViewControl">
+    <HorizontalStackLayout Margin="10,0"
+                           BindableLayout.ItemsSource="{Binding Path=ViewModel.Fields, Mode=OneWay}">
+        <BindableLayout.ItemTemplate>
+            <DataTemplate>
+                <Picker
+                    x:Name="PegSelectionPicker"
+                    ItemsSource="{Binding Path=BindingContext.ViewModel.Game.Colors, Mode=OneWay, Source={x:Reference PegSelectionViewControl}}"
+                    SelectedItem="{Binding Value, Mode=TwoWay}"
+                    Background="DarkGray"
+                    TextColor="White"
+                    Margin="0,0,4,0"
+                    MinimumWidthRequest="45"
+                    WidthRequest="88" />
+            </DataTemplate>
+        </BindableLayout.ItemTemplate>
+    </HorizontalStackLayout>
+</ContentView>

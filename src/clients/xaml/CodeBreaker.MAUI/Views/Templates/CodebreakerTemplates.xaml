@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:conv="clr-namespace:CodeBreaker.MAUI.Converters"
+    x:Class="CodeBreaker.MAUI.Views.Templates.CodebreakerTemplates">
+
+    <conv:ColornameToBrushConverter x:Key="ColorConverter" />
+    <conv:SelectionAndKeyPegToKeyVisibleConverter x:Key="KeyVisibleConverter" />
+    <conv:IntToEnumerableConverter x:Key="IntToEnumerableConverter" />
+
+    <DataTemplate x:Key="SelectColorTemplate">
+        <StackLayout>
+            <Frame HasShadow="True" BorderColor="DarkGray" CornerRadius="4" HorizontalOptions="Center"
+                   VerticalOptions="Center" HeightRequest="80" WidthRequest="80">
+                <Ellipse 
+                    Fill="{Binding Mode=OneWay, Converter={StaticResource ColorConverter}}" 
+                    WidthRequest="60" 
+                    HeightRequest="60" />
+            </Frame>
+        </StackLayout>
+    </DataTemplate>
+
+    <DataTemplate x:Key="PegsTemplate">
+        <ViewCell>
+            <Grid ColumnDefinitions="Auto, Auto, Auto">
+                <Border Grid.Column="1" StrokeThickness="2" Stroke="{StaticResource Black}">
+                    <HorizontalStackLayout Margin="16,0,0,0" BindableLayout.ItemsSource="{Binding Path=GuessPegs}">
+                        <HorizontalStackLayout.Resources>
+                            <Style TargetType="Ellipse">
+                                <Setter Property="WidthRequest" Value="38" />
+                                <Setter Property="HeightRequest" Value="38" />
+                                <Setter Property="Margin" Value="6, 4" />
+                            </Style>
+                        </HorizontalStackLayout.Resources>
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Ellipse Fill="{Binding Converter={StaticResource ColorConverter}}" />
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </HorizontalStackLayout>
+                </Border>
+
+                <Border
+                    Grid.Column="2"
+                    StrokeThickness="2"
+                    Stroke="{StaticResource Black}">
+                    <Grid Margin="12,0,0,0" RowDefinitions="*, *">
+                        <Grid.Resources>
+                            <Style TargetType="Ellipse">
+                                <Setter Property="Stroke" Value="White" />
+                                <Setter Property="StrokeThickness" Value="2" />
+                                <Setter Property="WidthRequest" Value="16" />
+                                <Setter Property="HeightRequest" Value="16" />
+                                <Setter Property="Margin" Value="8" />
+                            </Style>
+                        </Grid.Resources>
+                        <HorizontalStackLayout BindableLayout.ItemsSource="{Binding Path=KeyPegs.White, Converter={StaticResource IntToEnumerableConverter}}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Ellipse Fill="White" />
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout BindableLayout.ItemsSource="{Binding Path=KeyPegs.Black, Converter={StaticResource IntToEnumerableConverter}}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Ellipse Fill="Black" />
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </HorizontalStackLayout>
+                    </Grid>
+                </Border>
+            </Grid>
+        </ViewCell>
+    </DataTemplate>
+</ResourceDictionary>
