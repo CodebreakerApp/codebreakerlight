@@ -10,6 +10,10 @@ In einem Tag eine komplette .NET Lösung entwickeln? Ziel dieses Workshop ist, d
 
 In the [wiki](https://github.com/CNILearn/codebreakermini/wiki/) you can find step-by-step instructions for implementing codebreakermini.
 
+## Discussions
+
+If you have questions, don't hesitate to use [Discussions](https://github.com/CNILearn/codebreakermini/discussions)
+
 ## What's needed
 
 * Visual Studio 2022
