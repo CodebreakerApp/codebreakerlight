@@ -55,3 +55,10 @@ A GitHub Account: [Signup for GitHub](https://github.com/signup)
 [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
 Microsoft Azure Subscription - you can get USD 200,- credit for 30 days: [Azure Free Account](https://azure.microsoft.com/free/)
+
+## Sponsors
+
+[CN innovation](https://www.cninnovation.com)
+
+[Christian Nagel's C# Blog](https://csharp.christiannagel.com)
+
