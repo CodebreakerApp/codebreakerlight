@@ -3,12 +3,12 @@ name: Android Deployment
 # When this action will be executed
 on:
   # Automatically trigger it when detected changes in repo
-  push:
-    branches: 
-      [ main ]
-    paths:
-    - 'src/clients/xaml/CodeBreaker.MAUI/**'
-    - '.github/workflows/codebreaker-maui-android.yml'
+  # push:
+  #   branches: 
+  #     [ main ]
+  #   paths:
+  #   - 'src/clients/xaml/CodeBreaker.MAUI/**'
+  #   - '.github/workflows/codebreaker-maui-android.yml'
 
   # Allow mannually trigger 
   workflow_dispatch:      

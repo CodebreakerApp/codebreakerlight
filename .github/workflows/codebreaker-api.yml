@@ -14,7 +14,7 @@ on:
 
 jobs:
   build:
-    uses: CNILearn/codebreakermini/.github/workflows/api-build-shared.yml@main
+    uses: codebreakerapp/codebreakermini/.github/workflows/api-build-shared.yml@main
     with:
       version-prefix: 1.0.0
       version-suffix: ${{ github.run_number }}
@@ -26,14 +26,14 @@ jobs:
       REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
   
   deploy:
-    uses: CNILearn/codebreakermini/.github/workflows/api-publish-shared.yml@main
+    uses: codebreakerapp/codebreakermini/.github/workflows/api-publish-shared.yml@main
     needs: build
     with:
       containerimage-name: 'codebreakerapi'
       app-name: 'codebreaker-api'
       registryname: 'codebreakercontainerregistry563722'
       registryserver: 'codebreakercontainerregistry563722.azurecr.io'
-      resource-group: 'bastaspring2023'
+      resource-group: 'thrive2023'
     secrets:
       REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
       REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}    

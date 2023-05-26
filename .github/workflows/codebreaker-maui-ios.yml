@@ -3,12 +3,12 @@ name: iOS Deployment
 # When this action will be executed
 on:
   # Automatically trigger it when detected changes in repo
-  push:
-    branches: 
-      [ main ]
-    paths:
-    - 'src/clients/xaml/CodeBreaker.MAUI/**'
-    - '.github/workflows/codebreaker-maui-ios.yml'
+  # push:
+  #   branches: 
+  #     [ main ]
+  #   paths:
+  #   - 'src/clients/xaml/CodeBreaker.MAUI/**'
+  #   - '.github/workflows/codebreaker-maui-ios.yml'
 
   # Allow mannually trigger 
   workflow_dispatch:      

@@ -17,7 +17,7 @@ on:
 
 jobs:
   build:
-    uses: CNILearn/codebreakermini/.github/workflows/createnuget.yml@main
+    uses: codebreakerapp/codebreakermini/.github/workflows/createnuget.yml@main
     with:
       version-suffix: preview.1.${{ github.run_number }}
       projectfile-path: src/shared/CodeBreaker.Shared/CodeBreaker.Shared.csproj
@@ -25,7 +25,7 @@ jobs:
       artifact-name: codebreaker-shared
 
   publish:
-    uses: CNILearn/codebreakermini/.github/workflows/publishnuget.yml@main
+    uses: codebreakerapp/codebreakermini/.github/workflows/publishnuget.yml@main
     needs: build
     with:
       artifact-name: codebreaker-shared
