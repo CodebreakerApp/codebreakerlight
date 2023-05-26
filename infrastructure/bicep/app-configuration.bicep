@@ -35,8 +35,8 @@ resource appConfiguration 'Microsoft.AppConfiguration/configurationStores@2022-0
 var appConfigurationDataOwnerRole = resourceId('Microsoft.Authorization/roleDefinitions', '5ae67dd6-50cb-40e7-96ff-dc2bfa4b606b') // App Configuration Data Owner
 
 resource roleAssignment 'Microsoft.Authorization/roleAssignments@2020-10-01-preview' = [for principalId in userPrincipalIds: {
-  name: principalId
-  scope: resourceGroup()
+  name: guid(principalId)
+  scope: appConfiguration
   properties: {
     roleDefinitionId: appConfigurationDataOwnerRole
     principalId: principalId
