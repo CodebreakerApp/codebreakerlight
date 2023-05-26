@@ -2,7 +2,8 @@
 
 namespace CodeBreaker.Data.Models;
 
-public class Game {
+public class Game 
+{
     public required Guid GameId { get; init; }
 
     public required string Username { get; init; }

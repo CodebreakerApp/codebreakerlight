@@ -25,7 +25,7 @@ public class CodeBreakerContext : DbContext, ICodeBreakerRepository
     public async Task CreateGameAsync(Game game) {
         Games.Add(game);
         await SaveChangesAsync();
-        _logger.LogInformation($"Created game with id {game.GameId}");
+        _logger.LogInformation("Created game with id {gameid}", game.GameId);
     }
 
     public Task<Game?> GetGameAsync(Guid gameId, bool withTracking = true) =>
@@ -49,6 +49,6 @@ public class CodeBreakerContext : DbContext, ICodeBreakerRepository
     public async Task UpdateGameAsync(Game game) {
         Games.Update(game);
         await SaveChangesAsync();
-        _logger.LogInformation($"Updated game with id {game.GameId}");
+        _logger.LogInformation("Updated game with id {gameid}", game.GameId);
     }
 }
