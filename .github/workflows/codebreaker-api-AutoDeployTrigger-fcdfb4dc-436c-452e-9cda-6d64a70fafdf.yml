@@ -1,0 +1,42 @@
+name: Trigger auto deployment for codebreaker-api
+
+# When this action will be executed
+on:
+  # Automatically trigger it when detected changes in repo
+  push:
+    branches: 
+      [ main ]
+    paths:
+    - 'sample/**'
+    - '.github/workflows/codebreaker-api-AutoDeployTrigger-fcdfb4dc-436c-452e-9cda-6d64a70fafdf.yml'
+
+  # Allow mannually trigger 
+  workflow_dispatch:
+      
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout to the branch
+        uses: actions/checkout@v2
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.CODEBREAKERAPI_AZURE_CREDENTIALS }}
+
+      - name: Build and push container image to registry
+        uses: azure/container-apps-deploy-action@v1
+        with:
+          appSourcePath: ${{ github.workspace }}/sample 
+          registryUrl: codebreakercontainerregistrythrive2023a1.azurecr.io
+          registryUsername: ${{ secrets.CODEBREAKERAPI_REGISTRY_USERNAME }}
+          registryPassword: ${{ secrets.CODEBREAKERAPI_REGISTRY_PASSWORD }}
+          containerAppName: codebreaker-api
+          resourceGroup: thrive2023a
+          imageToBuild: codebreakercontainerregistrythrive2023a1.azurecr.io/codebreaker-api:${{ github.sha }}
+          dockerfilePath: Dockerfile
+
+     
+
