@@ -12,10 +12,11 @@
 		<PackageDescription>
 			EF Core data context to be used with Azure Cosmos DB
 		</PackageDescription>
+    <RepositoryUrl>https://github.com/codebreakerapp/codebreakerlight</RepositoryUrl>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Thrive2023.Codebreaker.Shared" Version="2.0.0-preview.1.10" />
+		<PackageReference Include="Thrive2023.Codebreaker.Shared" Version="2.0.0-preview.1.11" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Cosmos" Version="7.0.5" />
 	</ItemGroup>
 
