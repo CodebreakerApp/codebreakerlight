@@ -17,7 +17,7 @@ jobs:
     uses: codebreakerapp/codebreakermini/.github/workflows/api-build-shared.yml@main
     with:
       version-prefix: 2.0
-      version-suffix: ${{ github.run_number }}
+      version-suffix: preview.${{ github.run_number }}
       containerimage-name: 'codebreakerapi'
       solution-path: 'src/CodeBreaker.APIs.sln'
       registry: 'codebreakercontainerregistrythrive2023a1.azurecr.io'
