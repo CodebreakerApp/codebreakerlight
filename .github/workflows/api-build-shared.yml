@@ -32,12 +32,16 @@ jobs:
       IMAGE_VERSION: ${{ inputs.version-prefix }}-${{ inputs.version-suffix }}
 
     steps:
+      - name: Show image version
+        run: echo ${{ env.IMAGE_VERSION }}
+
       - name: Checkout to the branch
         uses: actions/checkout@v3
 
       - name: Run unit tests
         run: dotnet test ${{ inputs.solution-path }}
 
+      # version prefix taken from project file or Directory.build.props
       - name: Create Docker image
         run: dotnet publish ${{ inputs.solution-path }} --os linux --arch x64 --version-suffix ${{ inputs.version-suffix }} --configuration Release -p:PublishProfile=DefaultContainer -p:ContainerImageName=${{ inputs.containerimage-name }} 
 

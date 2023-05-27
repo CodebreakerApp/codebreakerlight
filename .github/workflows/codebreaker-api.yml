@@ -16,7 +16,7 @@ jobs:
   build:
     uses: codebreakerapp/codebreakermini/.github/workflows/api-build-shared.yml@main
     with:
-      version-prefix: 2.0
+      version-prefix: 2.0.2
       version-suffix: preview.${{ github.run_number }}
       containerimage-name: 'codebreakerapi'
       solution-path: 'src/CodeBreaker.APIs.sln'
