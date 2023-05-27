@@ -2,17 +2,15 @@
 
 namespace CodeBreaker.APIs.Services;
 
+// This interface represents the game service
 public interface IGameService
 {
-    // Get
+    // Gets a game by GameId
     Task<Game?> GetAsync(Guid gameId);
-    
-    // GetByDate
+
+    // Gets all the games by date
     IAsyncEnumerable<Game> GetByDateAsync(DateOnly date);
 
-    // GetByDate
-    IAsyncEnumerable<Game> GetByDateAsync(DateTime datetime);
-
-    // Create
+    // Creates a new game with the given username
     Task<Game> CreateAsync(string username);
 }

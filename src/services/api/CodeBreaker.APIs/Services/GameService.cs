@@ -30,9 +30,6 @@ public class GameService : IGameService
     public IAsyncEnumerable<Game> GetByDateAsync(DateOnly date) =>
         _repository.GetGamesByDateAsync(date);
 
-    public IAsyncEnumerable<Game> GetByDateAsync(DateTime datetime) =>
-        GetByDateAsync(DateOnly.FromDateTime(datetime));
-
     private static Game CreateWithRandomCode(string username)
     {
         var holes = 4;

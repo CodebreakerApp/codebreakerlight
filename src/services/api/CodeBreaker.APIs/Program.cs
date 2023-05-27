@@ -1,9 +1,10 @@
 using Azure.Identity;
+
 using CodeBreaker.APIs.Endpoints;
 using CodeBreaker.APIs.Services;
 using CodeBreaker.APIs.Utilities;
 using CodeBreaker.Data;
-using CodeBreaker.Shared.Extensions;
+
 using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;
@@ -17,7 +18,7 @@ DefaultAzureCredential azureCredential = new();
 var builder = WebApplication.CreateBuilder(args);
 
 // DI
-string configEndpoint = builder.Configuration.GetRequired("AzureAppConfigurationEndpoint");
+string configEndpoint = builder.Configuration["AzureAppConfigurationEndpoint"] ?? throw new InvalidOperationException();
 builder.Configuration.AddAzureAppConfiguration(options =>
 {
     options.Connect(new Uri(configEndpoint), azureCredential)
@@ -29,7 +30,7 @@ builder.Services.AddAzureAppConfiguration();
 
 builder.Services.AddApplicationInsightsTelemetry(options =>
 {
-    options.ConnectionString = builder.Configuration.GetRequired("ApiService:ApplicationInsights:ConnectionString");
+    options.ConnectionString = builder.Configuration["ApiService:ApplicationInsights:ConnectionString"] ?? throw new InvalidOperationException();
 });
 builder.Services.AddSingleton<ITelemetryInitializer, ApplicationInsightsTelemetryInitializer>();
 
@@ -38,8 +39,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ICodeBreakerRepository, CodeBreakerContext>(options =>
 {
-    string accountEndpoint = builder.Configuration.GetRequired("ApiService:Cosmos:AccountEndpoint");
-    string databaseName = builder.Configuration.GetRequired("ApiService:Cosmos:DatabaseName");
+    string accountEndpoint = builder.Configuration["ApiService:Cosmos:AccountEndpoint"] ?? throw new InvalidOperationException();
+    string databaseName = builder.Configuration["ApiService:Cosmos:DatabaseName"] ?? "Thrive2023";
     options.UseCosmos(accountEndpoint, azureCredential, databaseName);
 });
 
@@ -48,7 +49,7 @@ builder.Services.AddScoped<IMoveService, MoveService>();
 
 var app = builder.Build();
 
-// Middlewares
+// Middleware
 
 app.UseSwagger();
 app.UseSwaggerUI();

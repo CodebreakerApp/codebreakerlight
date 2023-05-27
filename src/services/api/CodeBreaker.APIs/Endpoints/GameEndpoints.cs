@@ -13,15 +13,16 @@ internal static class GameEndpoints
 {
     public static void MapGameEndpoints(this IEndpointRouteBuilder routes)
     {
-        var group = routes.MapGroup("/games").WithTags(nameof(Game));
+        var group = routes.MapGroup("/games")
+            .WithTags(nameof(Game));
 
         group.MapGet("/", (
-            [FromQuery] DateTime date,
-            [FromServices] IGameService gameService
+            DateTime date,
+            IGameService gameService
         ) =>
         {
             var games = gameService
-                .GetByDateAsync(date)
+                .GetByDateAsync(DateOnly.FromDateTime(date))
                 .Select(x => x.ToDto());
 
             return TypedResults.Ok(new GetGamesResponse(games.ToEnumerable())); // For production we should pass the IAsyncEnumerable instead of converting it to IEnumerable
@@ -36,8 +37,8 @@ internal static class GameEndpoints
 
         // Get game by id
         group.MapGet("/{gameId:guid}", async Task<Results<Ok<GetGameResponse>, NotFound>> (
-            [FromRoute] Guid gameId,
-            [FromServices] IGameService gameService
+            Guid gameId,
+            IGameService gameService
         ) =>
         {
             Game? game = await gameService.GetAsync(gameId);
@@ -57,8 +58,8 @@ internal static class GameEndpoints
 
         // Create game
         group.MapPost("/", async (
-            [FromBody] CreateGameRequest req,
-            [FromServices] IGameService gameService) =>
+            CreateGameRequest req,
+            IGameService gameService) =>
         {
             Game game = await gameService.CreateAsync(req.Username);
             return TypedResults.Created($"/games/{game.GameId}", new CreateGameResponse(game.ToDto()));
@@ -73,9 +74,9 @@ internal static class GameEndpoints
 
         // Create move for game
         group.MapPost("/{gameId:guid}/moves", async Task<Results<Ok<CreateMoveResponse>, NotFound, BadRequest<string>>>(
-            [FromRoute] Guid gameId,
-            [FromBody] CreateMoveRequest req,
-            [FromServices] IMoveService moveService) =>
+            Guid gameId,
+            CreateMoveRequest req,
+            IMoveService moveService) =>
         {
             Game game;
             Move move = new()
