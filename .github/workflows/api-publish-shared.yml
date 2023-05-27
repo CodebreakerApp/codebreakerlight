@@ -19,7 +19,7 @@ on:
         required: true
         type: string
     secrets:
-      AZURE_CREDENTIALS:
+      CODEBREAKERAPI_AZURE_CREDENTIALS:
         required: true
       REGISTRY_USERNAME:
         required: true
@@ -34,7 +34,7 @@ jobs:
       - name: Azure Login
         uses: azure/login@v1
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          creds: ${{ secrets.CODEBREAKERAPI_AZURE_CREDENTIALS }}
 
       - name: Deploy to containerapp
         uses: azure/CLI@v1
