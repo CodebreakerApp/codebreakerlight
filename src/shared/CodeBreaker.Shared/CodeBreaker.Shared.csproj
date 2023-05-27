@@ -12,6 +12,7 @@
     <PackageDescription>
       Contains Codebreaker model types used by applications on the client and the server
     </PackageDescription>
+    <RepositoryUrl>https://github.com/codebreakerapp/codebreakerlight</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
