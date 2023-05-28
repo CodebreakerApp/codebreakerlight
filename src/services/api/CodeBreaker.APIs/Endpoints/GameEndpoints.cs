@@ -5,7 +5,6 @@ using CodeBreaker.Shared.Api;
 using CodeBreaker.Shared.Exceptions;
 
 using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
 
 namespace CodeBreaker.APIs.Endpoints;
 
@@ -17,12 +16,16 @@ internal static class GameEndpoints
             .WithTags(nameof(Game));
 
         group.MapGet("/", (
-            DateTime date,
+            DateOnly? date,
             IGameService gameService
         ) =>
         {
+            if (date is null)
+            {
+                date = DateOnly.FromDateTime(DateTime.Now);
+            }
             var games = gameService
-                .GetByDateAsync(DateOnly.FromDateTime(date))
+                .GetByDateAsync(date.Value)
                 .Select(x => x.ToDto());
 
             return TypedResults.Ok(new GetGamesResponse(games.ToEnumerable())); // For production we should pass the IAsyncEnumerable instead of converting it to IEnumerable
