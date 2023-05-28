@@ -20,10 +20,7 @@ internal static class GameEndpoints
             IGameService gameService
         ) =>
         {
-            if (date is null)
-            {
-                date = DateOnly.FromDateTime(DateTime.Now);
-            }
+            date ??= DateOnly.FromDateTime(DateTime.Now);
             var games = gameService
                 .GetByDateAsync(date.Value)
                 .Select(x => x.ToDto());
@@ -79,7 +76,7 @@ internal static class GameEndpoints
         group.MapPost("/{gameId:guid}/moves", async Task<Results<Ok<CreateMoveResponse>, NotFound, BadRequest<string>>>(
             Guid gameId,
             CreateMoveRequest req,
-            IMoveService moveService) =>
+            IGameService gameService) =>
         {
             Game game;
             Move move = new()
@@ -90,7 +87,7 @@ internal static class GameEndpoints
 
             try
             {
-                game = await moveService.CreateMoveAsync(gameId, move);
+                game = await gameService.CreateMoveAsync(gameId, move);
             }
             catch (GameNotFoundException)
             {

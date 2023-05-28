@@ -13,4 +13,5 @@ public interface IGameService
 
     // Creates a new game with the given username
     Task<Game> CreateAsync(string username);
+    Task<Game> CreateMoveAsync(Guid gameId, Move move);
 }

@@ -21,7 +21,8 @@ internal static class GameExtensions {
 
         // check black
         for (int i = 0; i < guessPegsToCheck.Count; i++)
-            if (guessPegsToCheck[i] == codeToCheck[i]) {
+            if (guessPegsToCheck[i] == codeToCheck[i]) 
+            {
                 black++;
                 codeToCheck.RemoveAt(i);
                 guessPegsToCheck.RemoveAt(i);
@@ -29,7 +30,8 @@ internal static class GameExtensions {
             }
 
         // check white
-        foreach (string value in guessPegsToCheck) {
+        foreach (string value in guessPegsToCheck) 
+        {
             // value not in code
             if (!codeToCheck.Contains(value))
                 continue;
@@ -51,7 +53,7 @@ internal static class GameExtensions {
 
         game.Moves.Add(move);
 
-        // all holes correct  OR  maxmoves reached
+        // all holes correct  OR  max moves reached
         if (keyPegs.Black == game.Holes || game.Moves.Count >= game.MaxMoves)
             game.End = DateTime.Now;
     }

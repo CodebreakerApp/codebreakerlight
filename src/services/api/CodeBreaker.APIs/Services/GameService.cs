@@ -1,5 +1,8 @@
-﻿using CodeBreaker.Data;
+﻿using CodeBreaker.APIs.Extensions;
+using CodeBreaker.Data;
 using CodeBreaker.Data.Models;
+using CodeBreaker.Shared.Exceptions;
+
 using static CodeBreaker.Shared.Colors;
 
 namespace CodeBreaker.APIs.Services;
@@ -29,6 +32,16 @@ public class GameService : IGameService
 
     public IAsyncEnumerable<Game> GetByDateAsync(DateOnly date) =>
         _repository.GetGamesByDateAsync(date);
+
+    public virtual async Task<Game> CreateMoveAsync(Guid gameId, Move move)
+    {
+        Game game = await _repository.GetGameAsync(gameId) ?? throw new GameNotFoundException($"Game with id {gameId} not found");
+        game.ApplyMove(move);
+        await _repository.UpdateGameAsync(game);
+        _logger.LogInformation("Set move");
+        _logger.SetMove(move.ToString(), move.KeyPegs?.ToString() ?? string.Empty);
+        return game;
+    }
 
     private static Game CreateWithRandomCode(string username)
     {

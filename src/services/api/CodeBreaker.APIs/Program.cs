@@ -62,7 +62,6 @@ builder.Services.AddDbContext<ICodeBreakerRepository, CodeBreakerContext>(option
 });
 
 builder.Services.AddScoped<IGameService, GameService>();
-builder.Services.AddScoped<IMoveService, MoveService>();
 
 var app = builder.Build();
 
