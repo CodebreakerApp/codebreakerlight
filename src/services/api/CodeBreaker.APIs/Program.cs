@@ -1,3 +1,4 @@
+using Azure.Core.Diagnostics;
 using Azure.Identity;
 
 using CodeBreaker.APIs.Endpoints;
@@ -10,6 +11,22 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 
 #if DEBUG
+
+// Setup a listener to monitor logged events.
+using AzureEventSourceListener listener = AzureEventSourceListener.CreateConsoleLogger();
+
+DefaultAzureCredentialOptions options = new DefaultAzureCredentialOptions
+{
+    Diagnostics =
+    {
+        LoggedHeaderNames = { "x-ms-request-id" },
+        LoggedQueryParameters = { "api-version" },
+        IsLoggingContentEnabled = true,
+        IsAccountIdentifierLoggingEnabled = true
+    }
+};
+
+// DefaultAzureCredential azureCredential = new(options);
 AzureCliCredential azureCredential = new();
 #else
 DefaultAzureCredential azureCredential = new();
