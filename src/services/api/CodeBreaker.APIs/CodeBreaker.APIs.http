@@ -1,0 +1,31 @@
+﻿@CodeBreaker.APIs_HostAddress = https://localhost:7279
+
+### Get games by date
+GET {{CodeBreaker.APIs_HostAddress}}/games?date=2023-04-28
+
+### Get games from today
+GET {{CodeBreaker.APIs_HostAddress}}/games
+
+### Start a game
+POST {{CodeBreaker.APIs_HostAddress}}/games/
+Content-Type: application/json
+
+{
+    "username": "testuser"
+}
+
+### Set a move
+
+@gameid = 98172bea-cbcd-4000-8b62-153c2a8bedf6
+
+POST {{CodeBreaker.APIs_HostAddress}}/games/{{gameid}}/moves
+Content-Type: application/json
+
+{
+  "guessPegs": [ 
+      "Red", 
+      "Green", 
+      "Blue", 
+      "Yellow" 
+  ]
+}
