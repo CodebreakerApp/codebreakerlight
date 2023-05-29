@@ -51,6 +51,8 @@ builder.Services.AddApplicationInsightsTelemetry(options =>
 });
 builder.Services.AddSingleton<ITelemetryInitializer, ApplicationInsightsTelemetryInitializer>();
 
+builder.Services.AddCors();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -63,9 +65,17 @@ builder.Services.AddDbContext<ICodeBreakerRepository, CodeBreakerContext>(option
 
 builder.Services.AddScoped<IGameService, GameService>();
 
+
 var app = builder.Build();
 
 // Middleware
+
+app.UseCors(config =>
+{
+    config.AllowAnyMethod()
+    .AllowAnyHeader()
+    .AllowAnyOrigin();
+});
 
 app.UseSwagger();
 app.UseSwaggerUI();
