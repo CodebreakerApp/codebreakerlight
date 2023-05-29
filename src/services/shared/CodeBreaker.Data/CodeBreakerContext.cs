@@ -17,7 +17,9 @@ public class CodeBreakerContext : DbContext, ICodeBreakerRepository
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.HasDefaultContainer("GameContainer");
-        modelBuilder.ApplyConfiguration(new GameDbConfiguration());
+
+        modelBuilder.Entity<Game>().HasKey(g => g.GameId);
+        modelBuilder.Entity<Game>().HasPartitionKey(g => g.GameId);
     }
 
     public DbSet<Game> Games => Set<Game>();

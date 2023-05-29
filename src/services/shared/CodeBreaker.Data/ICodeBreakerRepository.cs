@@ -10,8 +10,5 @@ public interface ICodeBreakerRepository
 
     IAsyncEnumerable<Game> GetGamesByDateAsync(DateOnly date);
 
-    public IAsyncEnumerable<Game> GetGamesByDateAsync(DateTime datetime) =>
-        GetGamesByDateAsync(DateOnly.FromDateTime(datetime));
-
     Task UpdateGameAsync(Game game);
 }
