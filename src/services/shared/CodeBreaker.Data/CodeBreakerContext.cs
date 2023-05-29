@@ -1,5 +1,5 @@
-﻿using CodeBreaker.Data.Configurations;
-using CodeBreaker.Data.Models;
+﻿using CodeBreaker.Data.Models;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
