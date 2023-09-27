@@ -93,7 +93,7 @@ public static class GamesFactory
         {
             ColorGameGuessAnalyzer analyzer = new (game, GetGuesses<ColorField>(guesses), moveNumber);
             ColorResult result = analyzer.GetResult();
-            return new(moveNumber)
+            return new(Guid.NewGuid(), moveNumber)
             {
                 GuessPegs = guesses,
                 KeyPegs = result.ToStringResults()
@@ -104,7 +104,7 @@ public static class GamesFactory
         {
             SimpleGameGuessAnalyzer analyzer = new(game, GetGuesses<ColorField>(guesses), moveNumber);
             SimpleColorResult result = analyzer.GetResult();
-            return new(moveNumber)
+            return new(Guid.NewGuid(), moveNumber)
             {
                 GuessPegs = guesses,
                 KeyPegs = result.ToStringResults()
@@ -115,7 +115,7 @@ public static class GamesFactory
         {
             ShapeGameGuessAnalyzer analyzer = new(game, GetGuesses<ShapeAndColorField>(guesses), moveNumber);
             ShapeAndColorResult result = analyzer.GetResult();
-            return new(moveNumber)
+            return new(Guid.NewGuid(), moveNumber)
             {
                 GuessPegs = guesses,
                 KeyPegs = result.ToStringResults()
