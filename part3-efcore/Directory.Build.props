@@ -1,0 +1,15 @@
+<Project>
+  <PropertyGroup>
+    <Product>Codebreakerlight</Product>
+    <Authors>CN innovation</Authors>
+    <Company>CN innovation</Company>
+    <RepositoryUrl>https://github.com/codebreakerapp/codebreakerlight</RepositoryUrl>
+    <Copyright>(c) CN innovation</Copyright>
+    <IncludeSymbols>True</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <VersionPrefix>3.5.2</VersionPrefix>
+  </PropertyGroup>
+</Project>
