@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MauiControlsDemo.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:MauiControlsDemo.Pages"
+    Shell.FlyoutBehavior="Flyout"
+    Title="MauiControlsDemo">
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <Label Text="MauiControlsDemo" FontSize="18" Padding="15" HorizontalOptions="Center" />
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate pages:MainPage}"
+        Route="MainPage" />
+    <ShellContent
+        Title="About"
+        ContentTemplate="{DataTemplate pages:AboutPage}"
+        Route="AboutPage" />
+</Shell>
