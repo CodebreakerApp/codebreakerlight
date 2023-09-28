@@ -1,11 +1,12 @@
 ﻿namespace Codebreaker.GameAPIs.Services;
 
-public class GamesService(IGamesRepository dataRepository) : IGamesService
+public class GamesService(IGamesRepository dataRepository, ILogger<GamesService> logger) : IGamesService
 {
     private readonly IGamesRepository _dataRepository = dataRepository;
 
     public async Task<Game> StartGameAsync(string gameType, string playerName, CancellationToken cancellationToken = default)
     {
+        logger.LogInformation("Starting a game from {playerName}", playerName);
         Game game = GamesFactory.CreateGame(gameType, playerName);
 
         await _dataRepository.AddGameAsync(game, cancellationToken);

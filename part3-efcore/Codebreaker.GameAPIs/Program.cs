@@ -1,5 +1,8 @@
 using System.Runtime.CompilerServices;
 
+using Codebreaker.Data.Cosmos;
+
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 [assembly: InternalsVisibleTo("Codbreaker.APIs.Tests")]
@@ -31,7 +34,26 @@ builder.Services.AddSwaggerGen(options =>
 
 // Application Services
 
-builder.Services.AddSingleton<IGamesRepository, GamesMemoryRepository>();
+string dataStorage = builder.Configuration["DataStorage"] ??= "Cosmos";
+
+if (dataStorage == "Cosmos")
+{
+    builder.Services.AddDbContext<IGamesRepository, GamesCosmosContext>(options =>
+    {
+        string connectionString = builder.Configuration.GetConnectionString("GamesCosmosConnection") ?? throw new InvalidOperationException("Could not find GamesCosmosConnection");
+        options.UseCosmos(connectionString, databaseName: "codebreaker")
+            .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+    });
+}
+else if (dataStorage == "SqlServer")
+{
+
+}
+else
+{
+    builder.Services.AddSingleton<IGamesRepository, GamesMemoryRepository>();
+}
+
 builder.Services.AddScoped<IGamesService, GamesService>();
 
 var app = builder.Build();

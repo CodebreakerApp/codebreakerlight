@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeBreaker.Bot", "..\CodeB
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeBreaker.Bot.Tests", "..\CodeBreaker.Bot.Tests\CodeBreaker.Bot.Tests.csproj", "{93350B3B-3C34-458C-92E3-2A4DE5D5867B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codebreaker.Data.Cosmos", "..\Codebreaker.Data.Cosmos\Codebreaker.Data.Cosmos.csproj", "{CAFB4546-DF26-4000-A7E8-11D639CB1CC4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{93350B3B-3C34-458C-92E3-2A4DE5D5867B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93350B3B-3C34-458C-92E3-2A4DE5D5867B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93350B3B-3C34-458C-92E3-2A4DE5D5867B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAFB4546-DF26-4000-A7E8-11D639CB1CC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAFB4546-DF26-4000-A7E8-11D639CB1CC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAFB4546-DF26-4000-A7E8-11D639CB1CC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAFB4546-DF26-4000-A7E8-11D639CB1CC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
