@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.33927.210
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codebreaker.MAUI", "Codebreaker.MAUI\Codebreaker.MAUI.csproj", "{093BAA9E-0535-4B19-A9F1-11E2B65770F0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codebreaker.ViewModels", "Codebreaker.ViewModels\Codebreaker.ViewModels.csproj", "{A3C8A7F5-1890-4128-9E26-271C8246327D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codebreaker.GameAPIs.Client", "Codebreaker.GameAPIs.Client\Codebreaker.GameAPIs.Client.csproj", "{D56F94C9-5801-4F95-AFB4-FCD528425D9E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		FastUI|Any CPU = FastUI|Any CPU
+		Mudblazor|Any CPU = Mudblazor|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{093BAA9E-0535-4B19-A9F1-11E2B65770F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{093BAA9E-0535-4B19-A9F1-11E2B65770F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{093BAA9E-0535-4B19-A9F1-11E2B65770F0}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{093BAA9E-0535-4B19-A9F1-11E2B65770F0}.FastUI|Any CPU.ActiveCfg = Release|Any CPU
+		{093BAA9E-0535-4B19-A9F1-11E2B65770F0}.FastUI|Any CPU.Build.0 = Release|Any CPU
+		{093BAA9E-0535-4B19-A9F1-11E2B65770F0}.FastUI|Any CPU.Deploy.0 = Release|Any CPU
+		{093BAA9E-0535-4B19-A9F1-11E2B65770F0}.Mudblazor|Any CPU.ActiveCfg = Release|Any CPU
+		{093BAA9E-0535-4B19-A9F1-11E2B65770F0}.Mudblazor|Any CPU.Build.0 = Release|Any CPU
+		{093BAA9E-0535-4B19-A9F1-11E2B65770F0}.Mudblazor|Any CPU.Deploy.0 = Release|Any CPU
+		{093BAA9E-0535-4B19-A9F1-11E2B65770F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{093BAA9E-0535-4B19-A9F1-11E2B65770F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{093BAA9E-0535-4B19-A9F1-11E2B65770F0}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{A3C8A7F5-1890-4128-9E26-271C8246327D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3C8A7F5-1890-4128-9E26-271C8246327D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3C8A7F5-1890-4128-9E26-271C8246327D}.FastUI|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3C8A7F5-1890-4128-9E26-271C8246327D}.FastUI|Any CPU.Build.0 = Debug|Any CPU
+		{A3C8A7F5-1890-4128-9E26-271C8246327D}.Mudblazor|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3C8A7F5-1890-4128-9E26-271C8246327D}.Mudblazor|Any CPU.Build.0 = Debug|Any CPU
+		{A3C8A7F5-1890-4128-9E26-271C8246327D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3C8A7F5-1890-4128-9E26-271C8246327D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D56F94C9-5801-4F95-AFB4-FCD528425D9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D56F94C9-5801-4F95-AFB4-FCD528425D9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D56F94C9-5801-4F95-AFB4-FCD528425D9E}.FastUI|Any CPU.ActiveCfg = Debug|Any CPU
+		{D56F94C9-5801-4F95-AFB4-FCD528425D9E}.FastUI|Any CPU.Build.0 = Debug|Any CPU
+		{D56F94C9-5801-4F95-AFB4-FCD528425D9E}.Mudblazor|Any CPU.ActiveCfg = Debug|Any CPU
+		{D56F94C9-5801-4F95-AFB4-FCD528425D9E}.Mudblazor|Any CPU.Build.0 = Debug|Any CPU
+		{D56F94C9-5801-4F95-AFB4-FCD528425D9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D56F94C9-5801-4F95-AFB4-FCD528425D9E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1567BCD3-13B3-442E-BA30-A5D23CAE4A78}
+	EndGlobalSection
+EndGlobal
