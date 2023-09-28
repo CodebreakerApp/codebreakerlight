@@ -17,7 +17,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BastaSpring2023.Codebreaker.ClientServices" Version="1.0.0-preview.1.4" />
+    <PackageReference Include="CNInnovation.Codebreaker.Services" Version="2.0.1-beta.1.8" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="7.0.1" />
   </ItemGroup>

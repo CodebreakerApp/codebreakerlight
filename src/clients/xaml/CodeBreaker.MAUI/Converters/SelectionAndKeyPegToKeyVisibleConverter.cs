@@ -1,5 +1,4 @@
-﻿using CodeBreaker.ViewModels;
-
+﻿using Codebreaker.ViewModels;
 using System.Globalization;
 
 namespace CodeBreaker.MAUI.Converters;
@@ -12,7 +11,7 @@ internal class SelectionAndKeyPegToKeyVisibleConverter : IValueConverter
         ArgumentNullException.ThrowIfNull(parameter);
         
         if (value is SelectionAndKeyPegs selection && int.TryParse(parameter.ToString(), out int ix ))
-            return ix < selection.KeyPegs.White + selection.KeyPegs.Black;
+            return ix < selection.KeyPegs.Length;
 
         return false;
     }

@@ -84,7 +84,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="BastaSpring2023.Codebreaker.ViewModels" Version="1.0.0-preview.1.3" />
+	  <PackageReference Include="CNInnovation.Codebreaker.Services" Version="2.0.1-beta.1.8" />
+	  <PackageReference Include="CNInnovation.Codebreaker.Shared" Version="2.0.1-beta.1.9" />
+	  <PackageReference Include="CNInnovation.Codebreaker.ViewModels" Version="3.5.0-beta.22" />
 	  <PackageReference Include="CommunityToolkit.Maui" Version="4.0.0" />
 	  <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
 	  <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />

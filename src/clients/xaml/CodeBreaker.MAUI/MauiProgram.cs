@@ -1,11 +1,10 @@
 ﻿using CommunityToolkit.Maui;
-using CodeBreaker.ViewModels;
-using CodeBreaker.ViewModels.Services;
 using CodeBreaker.MAUI.Services;
-using CodeBreaker.Services;
 using Microsoft.Extensions.Configuration;
 using CodeBreaker.MAUI.Views.Pages;
-using CodeBreaker.Shared.Extensions;
+using Codebreaker.GameAPIs.Client;
+using Codebreaker.ViewModels;
+using Codebreaker.ViewModels.Services;
 
 namespace CodeBreaker.MAUI;
 
@@ -34,7 +33,7 @@ public static class MauiProgram
         builder.Services.Configure<GamePageViewModelOptions>(options => options.EnableDialogs = true);
         builder.Services.AddScoped<IDialogService, MauiDialogService>();
         builder.Services.AddScoped<GamePageViewModel>();
-		builder.Services.AddHttpClient<IGameClient, GameClient>(client =>
+		builder.Services.AddHttpClient<IGamesClient, GamesClient>(client =>
         {
 			client.BaseAddress = new(builder.Configuration.GetRequired("ApiBase"));
 		});

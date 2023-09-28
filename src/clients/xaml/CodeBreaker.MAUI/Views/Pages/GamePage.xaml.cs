@@ -1,5 +1,5 @@
-﻿using CodeBreaker.MAUI.Services;
-using CodeBreaker.ViewModels;
+﻿using Codebreaker.ViewModels;
+using CodeBreaker.MAUI.Services;
 
 using CommunityToolkit.Mvvm.Messaging;
 
