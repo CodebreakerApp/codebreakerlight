@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiControlsDemo.Pages.MainPage">
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+            <Image
+                Source="dotnet_bot.png"
+                SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                HeightRequest="200"
+                HorizontalOptions="Center" />
+            <Label
+                Text="Welcome!"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="32"
+                HorizontalOptions="Center" />
+            <Button Text="To the About page" Clicked="OnToAboutClicked" />
+            
+            <Label
+                Text="Please enter your name"
+                HorizontalOptions="Start" />
+            <Grid Style="{StaticResource FormGridStyle}">
+                <Entry
+                    Grid.Column="0"
+                    Placeholder="Name"
+                    x:Name="nameEntry" />
+                <Button
+                    Style="{StaticResource ButtonStyle}"
+                    x:Name="SubmitButton"
+                    Text="Submit name"
+                    Clicked="OnSubmitButtonClicked" />
+            </Grid>
+            <ListView x:Name="nameHistoryListView" Header="Name History" IsVisible="false" />
+
+            <Label Text="Circles" />
+            <HorizontalStackLayout Spacing="10" BindableLayout.ItemsSource="{Binding Path=Circles, Mode=OneTime}" BindableLayout.EmptyView="No circles added yet">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Ellipse BackgroundColor="{Binding}" Stroke="White" StrokeThickness="3" WidthRequest="40" HeightRequest="40" />
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </HorizontalStackLayout>
+
+            <Picker Title="Add circle" ItemsSource="{Binding AvailableColors}" SelectedItem="{Binding SelectedColor, Mode=OneWayToSource}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
