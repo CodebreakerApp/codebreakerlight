@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.33927.210
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codebreaker.ViewModels", "Codebreaker.ViewModels\Codebreaker.ViewModels.csproj", "{4C8C33A4-2784-454A-917E-61306EB044B2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codebreaker.ViewModels.Tests", "Codebreaker.ViewModels.Tests\Codebreaker.ViewModels.Tests.csproj", "{AE4646F2-6457-40B2-A9BB-DE354D875519}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4C8C33A4-2784-454A-917E-61306EB044B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C8C33A4-2784-454A-917E-61306EB044B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C8C33A4-2784-454A-917E-61306EB044B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C8C33A4-2784-454A-917E-61306EB044B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE4646F2-6457-40B2-A9BB-DE354D875519}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE4646F2-6457-40B2-A9BB-DE354D875519}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE4646F2-6457-40B2-A9BB-DE354D875519}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE4646F2-6457-40B2-A9BB-DE354D875519}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AAF31D56-5CE6-4A2F-AEAF-FCC75BF3BDFE}
+	EndGlobalSection
+EndGlobal

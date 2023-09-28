@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net7.0;net8.0</TargetFrameworks>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>preview</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>CNInnovation.Codebreaker.ViewModels</PackageId>
+    <PackageTags>
+      Codebreaker;CNinnovation;GamesClient;
+    </PackageTags>
+    <Description>
+      This library contains shared view-model types for the Codebreaker app.
+      See https://github.com/codebreakerapp for more information on the complete solution.
+    </Description>
+    <PackageDescription>
+      This library contains shared view-model types for the Codebreaker app.
+      See https://github.com/codebreakerapp for more information on the complete solution.
+    </PackageDescription>
+    <PackageReadmeFile>readme.md</PackageReadmeFile>
+    <PackageIcon>codebreaker.jpeg</PackageIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="7.0.1" />
+    <PackageReference Include="CNinnovation.Codebreaker.GamesClient" Version="3.5.0-beta.13" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="docs/readme.md" Pack="true" PackagePath="\" />
+    <None Include="Images/codebreaker.jpeg" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+</Project>

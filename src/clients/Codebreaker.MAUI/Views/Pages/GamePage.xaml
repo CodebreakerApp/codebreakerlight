@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:components="clr-namespace:Codebreaker.MAUI.Views.Components"
+             xmlns:conv="clr-namespace:Codebreaker.MAUI.Converters"
+             Title="Codebreaker"
+             x:Class="Codebreaker.MAUI.Views.Pages.GamePage">
+    
+    <ContentPage.Resources>
+        <conv:GameStatusToIsVisibleConverter x:Key="GameStatusVisibleConverter" />
+    </ContentPage.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout 
+            Spacing="25" 
+            Padding="30,0" 
+            VerticalOptions="FillAndExpand">
+                <ActivityIndicator 
+                    IsRunning="{Binding ViewModel.InProgress, Mode=OneWay}" 
+                    HorizontalOptions="Center" 
+                    VerticalOptions="Center" />
+
+                <Grid
+                    RowDefinitions="Auto, Auto"
+                    ColumnDefinitions="*, Auto"
+                    ColumnSpacing="8"
+                    RowSpacing="8"
+                    IsVisible="{Binding ViewModel.GameStatus, Mode=OneWay, Converter={StaticResource GameStatusVisibleConverter}, ConverterParameter=Start}">
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        VerticalTextAlignment="Center"
+                        Text="Enter your Gamername:" 
+                        FontSize="18" />
+                    <Entry
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        IsEnabled="{Binding ViewModel.IsNameEnterable, Mode=OneWay}"
+                        Text="{Binding ViewModel.Name, Mode=TwoWay }"
+                        Placeholder="Enter your name"/>
+                    <Button
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        Padding="40,8"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="EndAndExpand"
+                        Text="Start the game"
+                        IsVisible="{OnIdiom
+                            Default={Binding ViewModel.GameStatus, Mode=OneWay, Converter={StaticResource GameStatusVisibleConverter}, ConverterParameter=Start},
+                            Phone=False,
+                            Watch=False
+                        }"
+                        Command="{Binding ViewModel.StartGameCommand, Mode=OneTime}" />
+                </Grid>
+
+                <components:PegSelectionView IsVisible="{Binding ViewModel.GameStatus, Mode=OneWay, Converter={StaticResource GameStatusVisibleConverter}, ConverterParameter=Running}" />
+
+                <ListView
+                    IsVisible="{Binding ViewModel.GameStatus, Mode=OneWay, Converter={StaticResource GameStatusVisibleConverter}, ConverterParameter=Running}"
+                    ItemsSource="{Binding ViewModel.GameMoves, Mode=OneWay}"
+                    ItemTemplate="{StaticResource PegsTemplate}"/>
+
+            </VerticalStackLayout>
+
+        </ScrollView>
+        <VerticalStackLayout Grid.Row="1">
+            <Button
+                Padding="8"
+                HorizontalOptions="Fill"
+                VerticalOptions="EndAndExpand"
+                Text="Start the game"
+                IsVisible="{OnIdiom
+                    Default=False,
+                    Phone={Binding ViewModel.GameStatus, Mode=OneWay, Converter={StaticResource GameStatusVisibleConverter}, ConverterParameter=Start}
+                }"
+                Command="{Binding ViewModel.StartGameCommand, Mode=OneTime}" />
+            <Button 
+                Margin="20"
+                HorizontalOptions="Fill"
+                VerticalOptions="End"
+                Text="Move" 
+                IsVisible="{Binding ViewModel.GameStatus, Mode=OneWay, Converter={StaticResource GameStatusVisibleConverter}, ConverterParameter=Running}"
+                Command="{Binding ViewModel.SetMoveCommand, Mode=OneTime}" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>
