@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace MauiMvvmDemo.MVVM.Commands;
+namespace MauiMvvmDemo.ViewModels.Commands;
 
 public class Command : ICommand
 {

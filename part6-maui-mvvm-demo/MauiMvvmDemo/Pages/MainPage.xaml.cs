@@ -1,4 +1,4 @@
-﻿using MauiMvvmDemo.MVVM.Pages;
+﻿using MauiMvvmDemo.ViewModels.Pages;
 
 namespace MauiMvvmDemo.Pages;
 

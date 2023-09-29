@@ -1,5 +1,5 @@
-﻿using MauiMvvmDemo.MVVM.Pages;
-using MauiMvvmDemo.Pages;
+﻿using MauiMvvmDemo.Pages;
+using MauiMvvmDemo.ViewModels.Pages;
 using Microsoft.Extensions.Logging;
 
 namespace MauiMvvmDemo;

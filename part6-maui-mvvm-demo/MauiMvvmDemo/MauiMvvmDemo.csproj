@@ -62,7 +62,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\MauiMvvmDemo.MVVM\MauiMvvmDemo.ViewModels.csproj" />
+	  <ProjectReference Include="..\MauiMvvmDemo.ViewModels\MauiMvvmDemo.ViewModels.csproj" />
 	</ItemGroup>
 
 	<!-- Build Properties must be defined within these property groups to ensure successful publishing
