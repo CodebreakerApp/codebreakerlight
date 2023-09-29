@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiMvvmDemo.Pages.MainPage"
+             xmlns:local="clr-namespace:MauiMvvmDemo.Pages"
+             xmlns:converter="clr-namespace:MauiMvvmDemo.Converter">
+    <ContentPage.Resources>
+        <converter:SelectedFieldToStringConverter x:Key="SelectedFieldToStringConverter" />
+    </ContentPage.Resources>
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Start">
+
+            <HorizontalStackLayout Spacing="15">
+                <Label Text="Welcome" FontSize="30" />
+                <Label x:DataType="local:MainPage" Text="{Binding VM.Username, Mode=OneWay}" FontSize="30" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Spacing="20">
+                <HorizontalStackLayout BindableLayout.ItemsSource="{Binding VM.SelectedFields, Mode=OneWay}" x:Name="ColorsLayout" Spacing="20">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <VerticalStackLayout Spacing="10">
+                                <Ellipse WidthRequest="40" HeightRequest="40" BackgroundColor="{Binding Color, Mode=OneWay}" />
+                                <Picker
+                                    Title="Select a color"
+                                    ItemsSource="{Binding Source={x:Reference ColorsLayout}, Path=BindingContext.VM.AvailableColors, Mode=OneTime}"
+                                    SelectedItem="{Binding Color, Mode=TwoWay}"/>
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </HorizontalStackLayout>
+                <Button Text="Apply Move" x:DataType="local:MainPage" Command="{Binding VM.MakeMoveCommand}" />
+            </HorizontalStackLayout>
+
+            <ListView x:DataType="local:MainPage" ItemsSource="{Binding VM.Moves}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <HorizontalStackLayout BindableLayout.ItemsSource="{Binding Converter={StaticResource SelectedFieldToStringConverter}}" Spacing="20">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <VerticalStackLayout Spacing="10">
+                                            <Label Text="{Binding}" />
+                                            <Ellipse WidthRequest="40" HeightRequest="40" BackgroundColor="{Binding}" />
+                                        </VerticalStackLayout>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </HorizontalStackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Label Text="Username" Margin="40,0,0,0" />
+            <Entry Placeholder="Please enter your username" Text="{Binding VM.Username, Mode=TwoWay}" />
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
