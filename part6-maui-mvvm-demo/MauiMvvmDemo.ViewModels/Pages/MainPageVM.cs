@@ -19,7 +19,7 @@ public class MainPageVM : INotifyPropertyChanging, INotifyPropertyChanged
         ResetSelectedFields(); // Initialize SelectedFields
         MakeMoveCommand = new Command(_ =>
         {
-            Moves.Add(SelectedFields.Select(x => x.Color));
+            Moves.Add(SelectedFields.Select(x => x.Color).ToArray());  // ToArray to copy the values
             ResetSelectedFields();
         });
     }

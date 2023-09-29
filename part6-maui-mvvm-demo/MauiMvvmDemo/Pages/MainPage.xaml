@@ -14,16 +14,16 @@
                 <Label Text="{Binding VM.Username, Mode=OneWay}" FontSize="30" />
             </HorizontalStackLayout>
 
-            <HorizontalStackLayout>
+            <HorizontalStackLayout Spacing="2ß">
                 <HorizontalStackLayout BindableLayout.ItemsSource="{Binding VM.SelectedFields, Mode=OneWay}" x:Name="ColorsLayout" Spacing="20">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
                             <VerticalStackLayout Spacing="10">
                                 <Ellipse WidthRequest="40" HeightRequest="40" BackgroundColor="{Binding Color, Mode=OneWay}" />
                                 <Picker
-                    Title="Select a color"
-                    ItemsSource="{Binding Source={x:Reference ColorsLayout}, Path=BindingContext.VM.AvailableColors, Mode=OneTime}"
-                    SelectedItem="{Binding Color, Mode=TwoWay}"/>
+                                    Title="Select a color"
+                                    ItemsSource="{Binding Source={x:Reference ColorsLayout}, Path=BindingContext.VM.AvailableColors, Mode=OneTime}"
+                                    SelectedItem="{Binding Color, Mode=TwoWay}"/>
                             </VerticalStackLayout>
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>
@@ -31,7 +31,24 @@
                 <Button Text="Apply Move" Command="{Binding VM.MakeMoveCommand}" />
             </HorizontalStackLayout>
 
-            <ListView ItemsSource="{Binding VM.Moves}" />
+            <ListView ItemsSource="{Binding VM.Moves}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <HorizontalStackLayout BindableLayout.ItemsSource="{Binding}" Spacing="20">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <VerticalStackLayout Spacing="10">
+                                            <Label Text="{Binding}" />
+                                            <Ellipse WidthRequest="40" HeightRequest="40" BackgroundColor="{Binding}" />
+                                        </VerticalStackLayout>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </HorizontalStackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
             <Label Text="Username" Margin="40,0,0,0" />
             <Entry Placeholder="Please enter your username" Text="{Binding VM.Username, Mode=TwoWay}" />
