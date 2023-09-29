@@ -1,8 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiMvvmDemo.Pages.MainPage">
-
+             x:Class="MauiMvvmDemo.Pages.MainPage"
+             xmlns:converter="clr-namespace:MauiMvvmDemo.Converter">
+    <ContentPage.Resources>
+        <converter:SelectedFieldToStringConverter x:Key="SelectedFieldToStringConverter" />
+    </ContentPage.Resources>
     <ScrollView>
         <VerticalStackLayout
             Spacing="25"
@@ -14,7 +17,7 @@
                 <Label Text="{Binding VM.Username, Mode=OneWay}" FontSize="30" />
             </HorizontalStackLayout>
 
-            <HorizontalStackLayout Spacing="2ß">
+            <HorizontalStackLayout Spacing="20">
                 <HorizontalStackLayout BindableLayout.ItemsSource="{Binding VM.SelectedFields, Mode=OneWay}" x:Name="ColorsLayout" Spacing="20">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
@@ -35,7 +38,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <HorizontalStackLayout BindableLayout.ItemsSource="{Binding}" Spacing="20">
+                            <HorizontalStackLayout BindableLayout.ItemsSource="{Binding Converter={StaticResource SelectedFieldToStringConverter}}" Spacing="20">
                                 <BindableLayout.ItemTemplate>
                                     <DataTemplate>
                                         <VerticalStackLayout Spacing="10">

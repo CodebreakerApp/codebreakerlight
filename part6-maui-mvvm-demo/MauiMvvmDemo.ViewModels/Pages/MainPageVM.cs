@@ -19,7 +19,7 @@ public class MainPageVM : INotifyPropertyChanging, INotifyPropertyChanged
         ResetSelectedFields(); // Initialize SelectedFields
         MakeMoveCommand = new Command(_ =>
         {
-            Moves.Add(SelectedFields.Select(x => x.Color).ToArray());  // ToArray to copy the values
+            Moves.Add(SelectedFields.ToArray());  // ToArray to copy the values
             ResetSelectedFields();
         });
     }
@@ -36,7 +36,7 @@ public class MainPageVM : INotifyPropertyChanging, INotifyPropertyChanged
 
     public ObservableCollection<SelectedField> SelectedFields { get; } = new();
 
-    public ObservableCollection<IEnumerable<string>> Moves { get; } = new();
+    public ObservableCollection<IEnumerable<SelectedField>> Moves { get; } = new();
 
     public ICommand MakeMoveCommand { get; }
 
