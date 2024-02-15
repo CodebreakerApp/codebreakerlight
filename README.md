@@ -11,7 +11,6 @@ Events where this repository is used:
 * [BASTA! conference 2023 in Frankfurt, Germany](https://www.basta.net)
 * [Thrive Conference 2023 in Lipica, Slovenia](https://www.thriveconf.com/)
 
-## Try it out!
 
 ## Discussions
 
@@ -40,23 +39,11 @@ If you're interested in helping with the bigger Codebreaker repository, let's ge
 
 ## What's needed to create and build the application
 
-* Visual Studio 2022
-* GitHub Account
-* Docker Desktop
-* Microsoft Azure Subscription
+- [Installation](00-installation.md)
 
-Visual Studio 2022 with these workloads:
+## Instructions
 
-* ASP.NET and web development
-* .NET Multi-platform App UI development
-
-[Download Visual Studio](https://visualstudio.microsoft.com/downloads/)
-
-A GitHub Account: [Signup for GitHub](https://github.com/signup)
-
-[Docker Desktop](https://www.docker.com/products/docker-desktop/)
-
-Microsoft Azure Subscription - you can get USD 200,- credit for 30 days: [Azure Free Account](https://azure.microsoft.com/free/)
+- [Create the minimal API](01-minimalAPI.md)
 
 ## Sponsors
 
