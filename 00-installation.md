@@ -12,6 +12,7 @@
 Visual Studio 2022 Preview with these workloads:
 - ASP.NET and web development
 - Azure Development
+- .NET Aspire
 
 Individual Component
 - .NET Aspire SDK
