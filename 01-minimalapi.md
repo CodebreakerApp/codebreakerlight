@@ -370,30 +370,32 @@ public interface IGamesService
 
 ## Models for the API data transfer
 
-Implement the DTOs for the API data transfer:
+Implement the DTOs for the API data transfer (Models/GameAPIModels.cs):
 
 ```csharp
 [JsonConverter(typeof(JsonStringEnumConverter<GameType>))]
 public enum GameType
 {
     Game6x4,
-    TBD
+    Game6x4Mini,
+    Game8x5,
+    Game5x5x4
 }
 
 public record class CreateGameRequest(GameType GameType, string PlayerName);
 
-public record class CreateGameResponse(Guid GameId, GameType GameType, string PlayerName, int NumberCodes, int MaxMoves)
+public record class CreateGameResponse(Guid Id, GameType GameType, string PlayerName, int NumberCodes, int MaxMoves)
 {
     public required IDictionary<string, IEnumerable<string>> FieldValues { get; init; }
 }
 
-public record class UpdateGameRequest(Guid GameId, GameType GameType, string PlayerName, int MoveNumber, bool End = false)
+public record class UpdateGameRequest(Guid Id, GameType GameType, string PlayerName, int MoveNumber, bool End = false)
 {
     public string[]? GuessPegs { get; set; }
 }
 
 public record class UpdateGameResponse(
-    Guid GameId,
+    Guid Id,
     GameType GameType,
     int MoveNumber,
     bool Ended,
@@ -403,7 +405,7 @@ public record class UpdateGameResponse(
 
 ### Game Endpoint
 
-Define a game endpoint and define a group:
+Define a game endpoint and define a group (Endpoints/GameEndpoints.cs):
 
 ```csharp
     public static void MapGameEndpoints(this IEndpointRouteBuilder routes)
@@ -431,7 +433,7 @@ Using the group, specify MapPost to start a game:
                 GameError error = new(ErrorCodes.InvalidGameType, $"Game type {request.GameType} does not exist", context.Request.GetDisplayUrl(),   Enum.GetNames<GameType>());
                 return TypedResults.BadRequest(error);
             }
-            return TypedResults.Created($"/games/{game.GameId}", game.AsCreateGameResponse());
+            return TypedResults.Created($"/games/{game.Id}", game.ToCreateGameResponse());
         })
         .WithName("CreateGame")
         .WithSummary("Creates and starts a game")
@@ -445,75 +447,78 @@ Using the group, specify MapPost to start a game:
 Using the group, specify MapPatch to update the game with a move:
 
 ```csharp
-        // Update the game resource with a move
-        group.MapPatch("/{gameId:guid}", async Task<Results<Ok<UpdateGameResponse>, NotFound, BadRequest<GameError>>> (
-            Guid gameId,
-            UpdateGameRequest request,
-            IGamesService gameService,
-            HttpContext context,
-            CancellationToken cancellationToken) =>
-        {
-            if (!request.End && request.GuessPegs == null)
-            {
-                return TypedResults.BadRequest(new GameError(ErrorCodes.InvalidMove, "End the game or set guesses", context.Request.GetDisplayUrl()));
-            }
-            try
-            {
-                if (request.End)
-                {
-                    Game? game = await gameService.EndGameAsync(gameId, cancellationToken);
-                    if (game is null)
-                        return TypedResults.NotFound();
-                    return TypedResults.Ok(game.AsUpdateGameResponse());
-                }
-                else
-                {
-                    (Game game, Move move) = await gameService.SetMoveAsync(gameId, request.GuessPegs!, request.MoveNumber, cancellationToken);
-                    return TypedResults.Ok(game.AsUpdateGameResponse(move.KeyPegs));
-                }
-            }
-            catch (ArgumentException ex) when (ex.HResult is >= 4200 and <= 4500)
-            {
-                string url = context.Request.GetDisplayUrl();
-                return ex.HResult switch
-                {
-                    4200 => TypedResults.BadRequest(new GameError(ErrorCodes.InvalidGuessNumber, "Invalid number of guesses received", url)),
-                    4300 => TypedResults.BadRequest(new GameError(ErrorCodes.UnexpectedMoveNumber, "Unexpected move number received", url)),
-                    4400 => TypedResults.BadRequest(new GameError(ErrorCodes.InvalidGuess, "Invalid guess values received!", url)),
-                    _ => TypedResults.BadRequest(new GameError(ErrorCodes.InvalidMove,"Invalid move received!", url))
-                };
-            }
-            catch (CodebreakerException ex) when (ex.Code == CodebreakerExceptionCodes.GameNotFound)
-            {
-                return TypedResults.NotFound();
-            }
-            catch (CodebreakerException ex) when (ex.Code == CodebreakerExceptionCodes.GameNotActive)
-            {
-                string url = context.Request.GetDisplayUrl();
-                return TypedResults.BadRequest(new GameError(ErrorCodes.GameNotActive, "The game already ended", url));
-            }
-        })
-        .WithName("SetMove")
-        .WithSummary("End the game or set a move")
-        .WithOpenApi(op =>
-        {
-            op.Parameters[0].Description = "The id of the game to set a move";
-            op.RequestBody.Description = "The data for creating the move";
-            return op;
-        });
+       // Update the game resource with a move
+       group.MapPatch("/{id:guid}", async Task<Results<Ok<UpdateGameResponse>, NotFound, BadRequest<GameError>>> (
+           Guid id,
+           UpdateGameRequest request,
+           IGamesService gameService,
+           HttpContext context,
+           CancellationToken cancellationToken) =>
+       {
+           if (request.GuessPegs == null && !request.End)
+           {
+               return TypedResults.BadRequest(new GameError(ErrorCodes.InvalidMove, "End the game or set guesses", context.Request.GetDisplayUrl()));
+           }
+           try
+           {
+               if (request.End)
+               {
+                   Game? game = await gameService.EndGameAsync(id, cancellationToken);
+                   if (game is null)
+                       return TypedResults.NotFound();
+                   return TypedResults.Ok(game.ToUpdateGameResponse());
+               }
+               else
+               {
+                   // guess pegs could only be null if request.End is true, checked above
+                   (Game game, Move move) = await gameService.SetMoveAsync(id, request.GameType.ToString(), request.GuessPegs!, request.MoveNumber, cancellationToken);
+                   return TypedResults.Ok(game.ToUpdateGameResponse(move.KeyPegs));
+               }
+           }
+           catch (ArgumentException ex) when (ex.HResult is >= 4200 and <= 4500)
+           {
+               string url = context.Request.GetDisplayUrl();
+               return ex.HResult switch
+               {
+                   4200 => TypedResults.BadRequest(new GameError(ErrorCodes.InvalidGuessNumber, "Invalid number of guesses received", url)),
+                   4300 => TypedResults.BadRequest(new GameError(ErrorCodes.UnexpectedMoveNumber, "Unexpected move number received", url)),
+                   > 4400 and < 4490 => TypedResults.BadRequest(new GameError(ErrorCodes.InvalidGuess, "Invalid guess values received!", url)),
+                   _ => TypedResults.BadRequest(new GameError(ErrorCodes.InvalidMove,"Invalid move received!", url))
+               };
+           }
+           catch (CodebreakerException ex)
+           {
+               string url = context.Request.GetDisplayUrl();
+               return ex.Code switch
+               {
+                   CodebreakerExceptionCodes.GameNotFound => TypedResults.NotFound(),
+                   CodebreakerExceptionCodes.UnexpectedGameType => TypedResults.BadRequest(new GameError(ErrorCodes.UnexpectedGameType, "The game type specified with the move does not match the type of the running game", url)),
+                   CodebreakerExceptionCodes.GameNotActive => TypedResults.BadRequest(new GameError(ErrorCodes.GameNotActive, "The game already ended", url)),
+                   _ => TypedResults.BadRequest(new GameError("Unexpected", "Game error", url))
+               };
+           }
+       })
+       .WithName("SetMove")
+       .WithSummary("End the game or set a move")
+       .WithOpenApi(op =>
+       {
+           op.Parameters[0].Description = "The id of the game to set a move";
+           op.RequestBody.Description = "The data for creating the move";
+           return op;
+       });
 ```
 
 Define the `MapGet` method to return a single game:
 
 ```csharp
         // Get game by id
-        group.MapGet("/{gameId:guid}", async Task<Results<Ok<Game>, NotFound>> (
-            Guid gameId,
+        group.MapGet("/{id:guid}", async Task<Results<Ok<Game>, NotFound>> (
+            Guid id,
             IGamesService gameService,
             CancellationToken cancellationToken
         ) =>
         {
-            Game? game = await gameService.GetGameAsync(gameId, cancellationToken);
+            Game? game = await gameService.GetGameAsync(id, cancellationToken);
 
             if (game is null)
             {
@@ -531,24 +536,48 @@ Define the `MapGet` method to return a single game:
         });
 ```
 
-## Configure the Middleware
+## Configure the Middleware (ApplictationServices.cs)
 
 ```csharp
-builder.Services.AddSingleton<IGamesRepository, GamesMemoryRepository>();
-builder.Services.AddScoped<IGamesService, GamesService>();
-
-var app = builder.Build();
-
-if (app.Environment.IsDevelopment())
+public static class ApplicationServices
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(options =>
+    public static void AddApplicationServices(this IHostApplicationBuilder builder)
     {
-        // options.InjectStylesheet("/swagger-ui/swaggerstyle.css");
-        options.SwaggerEndpoint("/swagger/v3/swagger.json", "v3");
-    });
-}
+        static void ConfigureInMemory(IHostApplicationBuilder builder)
+        {
+            builder.Services.AddSingleton<IGamesRepository, GamesMemoryRepository>();
+        }
 
+        string? dataStore = builder.Configuration.GetValue<string>("DataStore");
+        switch (dataStore)
+        {
+            case "SqlServer":
+                break;
+            case "Cosmos":
+                break;
+            case "DistributedMemory":
+                break;
+            default:
+                ConfigureInMemory(builder);
+                break;
+        }
+
+        builder.Services.AddScoped<IGamesService, GamesService>();
+
+        builder.AddRedisDistributedCache("redis");
+    }
+}
+``` 
+
+And with the top-level statements DI container configuration
+
+```csharp
+builder.AddApplicationServices();
+```
+
+And the middleware
+
+```
 app.MapGameEndpoints();
 ```
 
@@ -571,27 +600,26 @@ Content-Type: {{ContentType}}
 
 ### Set a move
 
-@gameid = 9421c1cc-4cbf-4485-83c9-da02d47b383e
+@id = 77822526-76eb-4a8f-8186-461226168170
 
-PATCH {{Codebreaker.GameAPIs_HostAddress}}/games/{{gameid}}
+PATCH {{Codebreaker.GameAPIs_HostAddress}}/games/{{id}}
 Content-Type: {{ContentType}}
 
 {
   "gameType": "Game6x4",
   "playerName": "test",
-  "moveNumber": 4,
+  "moveNumber": 1,
   "guessPegs": [
-    "Green",
     "Red",
     "Green",
-    "Red"
+    "Blue",
+    "Yellow"
   ]
 }
 
 ### Get game information
 
-GET {{Codebreaker.GameAPIs_HostAddress}}/games/{{gameid}}
-
+GET {{Codebreaker.GameAPIs_HostAddress}}/games/{{id}}
 ```
 
 ## Run the service
