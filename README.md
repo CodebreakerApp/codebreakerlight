@@ -43,7 +43,7 @@ If you're interested in helping with the bigger Codebreaker repository, let's ge
 
 ## Instructions
 
-- [Create the minimal API](01-minimalAPI.md)
+- [Create the minimal API](01-minimalapi.md)
 - [Add Aspire](02-aspire.md)
 - [Add database components](03-databases.md)
 - [Host with Azure](04-hosting.md)
