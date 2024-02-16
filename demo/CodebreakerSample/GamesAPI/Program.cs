@@ -2,6 +2,8 @@ using Codebreaker.GameAPIs.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddServiceDefaults();
+
 builder.Services.AddMetrics();
 
 builder.Services.AddSingleton<GamesMetrics>();
@@ -15,6 +17,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.MapDefaultEndpoints();
 
 // Configure the HTTP request pipeline.
 app.UseSwagger();
