@@ -1,17 +1,16 @@
-# Full Stack .NET Development with ASP.NET Core, Microsoft Azure and .NET MAUI
+# Minimal APIs, Docker and Azure Container Apps with .NET Aspire
 
-This is a **light** version of *Codebreaker*, a repository to learn creating Microservices with ASP.NET Core and Microsoft Azure. This repo also contains a .NET MAUI client application to access the service.
+This is a **light** version of *Codebreaker*, a repository to learn creating Microservices with ASP.NET Core, Microsoft Azure, and .NET Aspire
 
 You can try out to create the code on your own - see the [Wiki](https://github.com/CodebreakerApp/codebreakerlight/wiki) for instructions.
 
 Events where this repository is used:
 
-* [BASTA! conference](https://www.basta.net) in Frankfurt, Germany
-* [Thrive Conference](https://www.thriveconf.com/) in Lipica, Slovenia
+* [BASTA! conference 2024 in Frankfurt, Germany](https://www.basta.net)
+* [BASTA! conference 2023 in Mainz, Germany](https://www.basta.net)
+* [BASTA! conference 2023 in Frankfurt, Germany](https://www.basta.net)
+* [Thrive Conference 2023 in Lipica, Slovenia](https://www.thriveconf.com/)
 
-## Try it out!
-
-Read the [wiki](https://github.com/CNILearn/codebreakermini/wiki/) you can find step-by-step instructions for implementing codebreaker light.
 
 ## Discussions
 
@@ -20,6 +19,7 @@ If you have questions, don't hesitate to use [Discussions](https://github.com/CN
 ## Technologies used
 
 * ASP.NET Core Minimal API
+* .NET Aspire
 * EF Core
 * Bicep scripts to create Azure resources
 * GitHub actions for CI/CD
@@ -27,6 +27,7 @@ If you have questions, don't hesitate to use [Discussions](https://github.com/CN
 * Azure Container Apps
 * Azure Container Registry
 * Azure App Configuration
+* Redis
 
 ## How to engage, contribute, and give feedback
 
@@ -38,23 +39,14 @@ If you're interested in helping with the bigger Codebreaker repository, let's ge
 
 ## What's needed to create and build the application
 
-* Visual Studio 2022
-* GitHub Account
-* Docker Desktop
-* Microsoft Azure Subscription
+- [Installation](00-installation.md)
 
-Visual Studio 2022 with these workloads:
+## Instructions
 
-* ASP.NET and web development
-* .NET Multi-platform App UI development
-
-[Download Visual Studio](https://visualstudio.microsoft.com/downloads/)
-
-A GitHub Account: [Signup for GitHub](https://github.com/signup)
-
-[Docker Desktop](https://www.docker.com/products/docker-desktop/)
-
-Microsoft Azure Subscription - you can get USD 200,- credit for 30 days: [Azure Free Account](https://azure.microsoft.com/free/)
+- [Create the minimal API](01-minimalapi.md)
+- [Add Aspire](02-aspire.md)
+- [Add database components](03-databases.md)
+- [Host with Azure](04-hosting.md)
 
 ## Sponsors
 
