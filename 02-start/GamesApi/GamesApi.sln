@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.35821.62
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamesApi", "GamesApi.csproj", "{80784EC6-59EC-7C06-6568-3761A56D765C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamesApi", "GamesApi\GamesApi.csproj", "{80784EC6-59EC-7C06-6568-3761A56D765C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +19,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {3D53AC63-7C62-4FF5-8C23-318C8EFDB133}
+		SolutionGuid = {E235290A-8E57-456B-8A89-DB45EBB5016E}
 	EndGlobalSection
 EndGlobal
