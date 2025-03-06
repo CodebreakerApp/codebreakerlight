@@ -2,17 +2,16 @@
  
 ## What you need
 
-- Visual Studio 2022 Preview
+- Visual Studio 2022
 - GitHub Account
 - Docker Desktop
-- Microsoft Azure Subscription
-- Azure Cosmos DB Emulator
+- Microsoft Azure Subscription (to run the application in Azure)
+- Azure Cosmos DB Emulator (optional)
 - .NET Aspire
 
-Visual Studio 2022 Preview with these workloads:
+Visual Studio 2022 workloads
 - ASP.NET and web development
 - Azure Development
-- .NET Aspire
 
 Individual Component
 - .NET Aspire SDK
