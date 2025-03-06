@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Microsoft.EntityFrameworkCore.Cosmos" Version="9.1.0" />
+    <PackageReference Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="9.1.0" />
+    <PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.1.0" />
+    <PackageReference Include="CNinnovation.Codebreaker.Analyzers" Version="3.8.0" />
+    <PackageReference Include="CNinnovation.Codebreaker.BackendModels" Version="3.8.0" />
+    <PackageReference Include="CNinnovation.Codebreaker.Cosmos" Version="3.8.0" />
+    <PackageReference Include="CNinnovation.Codebreaker.Postgres" Version="3.8.0-preview.1.10" />
+    <PackageReference Include="CNinnovation.Codebreaker.SqlServer" Version="3.8.0" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GamesApi.ServiceDefaults\GamesApi.ServiceDefaults.csproj" />
+  </ItemGroup>
+
+</Project>
