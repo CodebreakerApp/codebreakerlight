@@ -1,11 +1,10 @@
-# Minimal APIs, Docker and Azure Container Apps with .NET Aspire
+# .NET Aspire mit .NET 9 und Microsoft Azure
 
-This is a **light** version of *Codebreaker*, a repository to learn creating Microservices with ASP.NET Core, Microsoft Azure, and .NET Aspire
-
-You can try out to create the code on your own - see the [Wiki](https://github.com/CodebreakerApp/codebreakerlight/wiki) for instructions.
+This is a **light** version of *Codebreaker*, a repository to learn creating Microservices with ASP.NET Core, Microsoft Azure, and .NET Aspire!
 
 Events where this repository is used:
 
+* [BASTA! conference 2025 in Frankfurt, Germany](https://www.basta.net)
 * [BASTA! conference 2024 in Frankfurt, Germany](https://www.basta.net)
 * [BASTA! conference 2023 in Mainz, Germany](https://www.basta.net)
 * [BASTA! conference 2023 in Frankfurt, Germany](https://www.basta.net)
@@ -14,11 +13,11 @@ Events where this repository is used:
 
 ## Discussions
 
-If you have questions, don't hesitate to use [Discussions](https://github.com/CNILearn/codebreakermini/discussions)
+If you have questions, don't hesitate to use [Discussions](https://github.com/CodebreakerApp/codebreakerlight/discussions)
 
 ## Technologies used
 
-* ASP.NET Core Minimal API
+* ASP.NET Core minimal APIs
 * .NET Aspire
 * EF Core
 * Bicep scripts to create Azure resources
@@ -53,4 +52,3 @@ If you're interested in helping with the bigger Codebreaker repository, let's ge
 [CN innovation](https://www.cninnovation.com)
 
 [Christian Nagel's C# Blog](https://csharp.christiannagel.com)
-
