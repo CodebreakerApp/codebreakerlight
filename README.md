@@ -11,6 +11,15 @@ This is a **light** version of *Codebreaker*, a repository to learn creating Mic
 - [Add database components](03-databases.md)
 - [Host with Microsoft Azure](04-hosting.md)
 
+## Links
+
+- [Aspir8](https://github.com/prom3theu5/aspirational-manifests)
+- [Aspire AWS](https://github.com/aws/integrations-on-dotnet-aspire-for-aws)
+- [Aspire Repo](https://github.com/dotnet/aspire)
+- [Community Toolkit Aspire](https://github.com/CommunityToolkit/Aspire)
+- [Codebreaker App](https://blazor.codebreaker.app)
+- [Pragmatic Microservices with C# and Azure](https://github.com/PacktPublishing/Pragmatic-Microservices-with-CSharp-and-Azure)
+
 Events where this repository is used:
 
 * [BASTA! conference 2025 in Frankfurt, Germany](https://www.basta.net)
