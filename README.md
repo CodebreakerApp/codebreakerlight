@@ -2,6 +2,8 @@
 
 This is a **light** version of *Codebreaker*, a repository to learn creating Microservices with ASP.NET Core, Microsoft Azure, and .NET Aspire!
 
+[Slides](https://github.com/CNILearn/bastaspring2025/blob/main/slides/AspireWorkshop2025.pdf)
+
 ## Hands-on
 
 - [Create the minimal API](01-minimalapi.md)
