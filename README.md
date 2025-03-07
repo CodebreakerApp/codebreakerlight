@@ -2,6 +2,13 @@
 
 This is a **light** version of *Codebreaker*, a repository to learn creating Microservices with ASP.NET Core, Microsoft Azure, and .NET Aspire!
 
+## Hands-on
+
+- [Create the minimal API](01-minimalapi.md)
+- [Add Aspire](02-aspire.md)
+- [Add database components](03-databases.md)
+- [Host with Microsoft Azure](04-hosting.md)
+
 Events where this repository is used:
 
 * [BASTA! conference 2025 in Frankfurt, Germany](https://www.basta.net)
@@ -26,13 +33,8 @@ If you have questions, don't hesitate to use [Discussions](https://github.com/Co
 * Azure Container Apps
 * Azure Container Registry
 * Azure App Configuration
-* Redis
 
 ## How to engage, contribute, and give feedback
-
-Try out the solution, use the information in the [Wiki](https://github.com/CNILearn/codebreakermini/wiki/) to create this solution on your own. In case you've issues, or ideas, ... don't hesitate to start a [discussion](/https://github.com/CNILearn/codebreakermini/discussions). If you see some issues with the code, open an *Issue*.
-
-You can also read the slides from the [BASTA! Spring 2023 Workshop](slides/BastaSpring2023Workshop.pdf)
 
 If you're interested in helping with the bigger Codebreaker repository, let's get in contact. The bigger repository contains a bot which automatically plays games, a live service which makes use of SignalR for real-time communication, gRPC communication, and more. In some months this repo will be made public available as well. While you wait for it, enjoy this smaller one.
 
@@ -40,12 +42,6 @@ If you're interested in helping with the bigger Codebreaker repository, let's ge
 
 - [Installation](00-installation.md)
 
-## Instructions
-
-- [Create the minimal API](01-minimalapi.md)
-- [Add Aspire](02-aspire.md)
-- [Add database components](03-databases.md)
-- [Host with Azure](04-hosting.md)
 
 ## Sponsors
 
